@@ -17,8 +17,8 @@ import frc.team4931.robot.subsystems.Drivetrain;
  */
 public class DriveWithJoystick extends Command {
 
-    private Joystick joystick;
-    private Drivetrain drivetrain;
+ private Joystick joystick;
+ private Drivetrain drivetrain;
 
   public DriveWithJoystick() {
     // Use requires() here to declare subsystem dependencies
@@ -36,7 +36,7 @@ public class DriveWithJoystick extends Command {
   @Override
   protected void execute() {
     // FIXME
-    drivetrain.mecanumDrive(joystick.getY(), joystick.getX(), joystick.getZ());
+    drivetrain.driveCartesian(joystick.getY(), joystick.getX(), joystick.getZ());
   }
 
   // Make this return true when this Command no longer needs to run execute()

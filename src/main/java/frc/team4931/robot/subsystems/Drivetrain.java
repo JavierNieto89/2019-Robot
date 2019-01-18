@@ -9,7 +9,6 @@ package frc.team4931.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import frc.team4931.robot.RobotMap;
@@ -43,7 +42,30 @@ public class Drivetrain extends Subsystem {
     setDefaultCommand(new DriveWithJoystick());
   }
 
-  public void mecanumDrive(double ySpeed, double xSpeed, double zRotation) {
+  /**
+   * Use this for cartesian driving in a robot oriented axis.
+   * 
+   * @see edu.wpi.first.wpilibj.drive.MecanumDrive#driveCartesian(double, double, double)
+   */
+  public void driveCartesian(double ySpeed, double xSpeed, double zRotation) {
     mecanumDrive.driveCartesian(ySpeed, xSpeed, zRotation);
+  }
+
+  /**
+   * Use this for cartesian driving in a world oriented axis.
+   * 
+   * @see edu.wpi.first.wpilibj.drive.MecanumDrive#driveCartesian(double, double, double, double)
+   */
+  public void driveCartesianFieldOriented(double ySpeed, double xSpeed, double zRotation, double gyroAngle) {
+    mecanumDrive.driveCartesian(ySpeed, xSpeed, zRotation, gyroAngle);
+  }
+
+  /**
+   * This method is for driving in a direction relative to the robot in degrees.
+   * 
+   * @see edu.wpi.first.wpilibj.drive.MecanumDrive#drivePolar(double, double, double)
+   */
+  public void drivePolar(double magnitude, double angle, double zRotation) {
+    mecanumDrive.drivePolar(magnitude, angle, zRotation);
   }
 }
