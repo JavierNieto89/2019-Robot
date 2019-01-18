@@ -7,26 +7,36 @@
 
 package frc.team4931.robot.commands;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.team4931.robot.Robot;
+import frc.team4931.robot.subsystems.Drivetrain;
 
 /**
  * An example command.  You can replace me with your own command.
  */
-public class ExampleCommand extends Command {
-  public ExampleCommand() {
+public class DriveWithJoystick extends Command {
+
+    private Joystick joystick;
+    private Drivetrain drivetrain;
+
+  public DriveWithJoystick() {
     // Use requires() here to declare subsystem dependencies
-    //requires(Robot.m_subsystem);
+    requires(Robot.getDrivetrain());
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    joystick = Robot.getOperatorInput().getJoystick();
+    drivetrain = Robot.getDrivetrain();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    // FIXME
+    drivetrain.mecanumDrive(joystick.getY(), joystick.getX(), joystick.getZ());
   }
 
   // Make this return true when this Command no longer needs to run execute()
