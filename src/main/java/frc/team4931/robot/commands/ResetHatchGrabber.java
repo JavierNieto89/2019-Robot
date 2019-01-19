@@ -5,6 +5,10 @@ import frc.team4931.robot.Robot;
 
 public class ResetHatchGrabber extends Command {
 
+    public ResetHatchGrabber() {
+        requires(Robot.getHatchGrabber());
+    }
+
     @Override
     protected void initialize() {
         Robot.getHatchGrabber().resetHatchGrabber();

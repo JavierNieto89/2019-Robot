@@ -5,6 +5,10 @@ import frc.team4931.robot.Robot;
 
 public class ChangeHatchGrabberState extends Command {
 
+    public ChangeHatchGrabberState() {
+        requires(Robot.getHatchGrabber());
+    }
+
     @Override
     protected void initialize() {
         Robot.getHatchGrabber().changeHatchGrabberState();

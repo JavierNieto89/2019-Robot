@@ -5,6 +5,10 @@ import frc.team4931.robot.Robot;
 
 public class ExtendHatchGrabber extends Command {
 
+    public ExtendHatchGrabber() {
+        requires(Robot.getHatchGrabber());
+    }
+
     @Override
     protected void initialize() {
         Robot.getHatchGrabber().extendHatchGrabber();
