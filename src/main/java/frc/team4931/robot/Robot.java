@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team4931.robot.sensors.Pigeon;
 import frc.team4931.robot.subsystems.Drivetrain;
+import frc.team4931.robot.subsystems.HatchGrabber;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -28,6 +29,8 @@ public class Robot extends TimedRobot {
 
   private static OperatorInput operatorInput;
 
+  private static HatchGrabber hatchGrabber;
+
   /**
    * This function is run when the robot is first started up and should be used
    * for any initialization code.
@@ -39,6 +42,8 @@ public class Robot extends TimedRobot {
     pigeon = new Pigeon();
 
     operatorInput = new OperatorInput();
+
+    hatchGrabber = new HatchGrabber();
 
     SmartDashboard.putData(drivetrain);
   }
@@ -67,5 +72,9 @@ public class Robot extends TimedRobot {
 
   public static OperatorInput getOperatorInput() {
     return operatorInput;
+  }
+
+  public static HatchGrabber getHatchGrabber() {
+    return hatchGrabber;
   }
 }
