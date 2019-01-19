@@ -5,20 +5,26 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.team4931.robot.subsystems;
+package frc.team4931.robot.commands.utilities;
 
-import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.command.Command;
 
-/**
- * An example subsystem.  You can replace me with your own Subsystem.
- */
-public class ExampleSubsystem extends Subsystem {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
+public class Wait extends Command {
+
+  private long startTime;
+  private long waitTime;
+
+  public Wait(long waitTime) {
+    this.waitTime = waitTime;
+  }
 
   @Override
-  public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
+  protected void initialize() {
+    startTime = System.currentTimeMillis();
+  }
+
+  @Override
+  protected boolean isFinished() {
+    return System.currentTimeMillis() - startTime >= waitTime;
   }
 }
