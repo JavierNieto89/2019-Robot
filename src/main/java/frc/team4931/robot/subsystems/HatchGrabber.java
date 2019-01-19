@@ -20,7 +20,6 @@ public class HatchGrabber extends Subsystem {
     }
 
     protected void initDefaultCommand() {
-        setDefaultCommand(new ChangeHatchGrabberState());
     }
 
     public void changeHatchGrabberState() {
@@ -33,7 +32,11 @@ public class HatchGrabber extends Subsystem {
         }
     }
 
-    public void resetHatchGrabberState() {
+    public void extendHatchGrabber() {
+        pneumatic.set(Value.kForward);
+    }
+
+    public void resetHatchGrabber() {
         pneumatic.set(Value.kReverse);
     }
 

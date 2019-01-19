@@ -3,11 +3,11 @@ package frc.team4931.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.team4931.robot.Robot;
 
-public class ChangeHatchGrabberState extends Command {
+public class ExtendHatchGrabber extends Command {
 
     @Override
     protected void initialize() {
-        Robot.getHatchGrabber().changeHatchGrabberState();
+        Robot.getHatchGrabber().extendHatchGrabber();
     }
 
     @Override
