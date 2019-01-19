@@ -12,9 +12,9 @@ import edu.wpi.first.wpilibj.command.Command;
 public class Wait extends Command {
 
   private long startTime;
-  private short waitTime;
+  private long waitTime;
 
-  public Wait(short waitTime) {
+  public Wait(long waitTime) {
     this.waitTime = waitTime;
   }
 

@@ -8,12 +8,11 @@
 package frc.team4931.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import com.ctre.phoenix.sensors.PigeonIMU;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import frc.team4931.robot.RobotMap;
-import frc.team4931.robot.commands.DriveWithJoystick;
+import frc.team4931.robot.commands.DriveTeleoperated;
 
 public class Drivetrain extends Subsystem {
 
@@ -24,8 +23,6 @@ public class Drivetrain extends Subsystem {
 
   private MecanumDrive mecanumDrive;
 
-  private PigeonIMU pigeon;
-
   public Drivetrain() {
     motorFrontLeft = new WPI_TalonSRX(RobotMap.MOTOR_DT_FRONT_LEFT);
     motorFrontRight = new WPI_TalonSRX(RobotMap.MOTOR_DT_FRONT_RIGHT);
@@ -33,19 +30,18 @@ public class Drivetrain extends Subsystem {
     motorBackRight = new WPI_TalonSRX(RobotMap.MOTOR_DT_BACK_RIGHT);
 
     mecanumDrive = new MecanumDrive(motorFrontLeft, motorFrontRight, motorBackLeft, motorBackRight);
-
-    // pigeon = new PigeonIMU(?); FIXME: How are we connecting the pigeon? It looks like you can either use a talon or device port
   }
 
   @Override
   public void initDefaultCommand() {
-    setDefaultCommand(new DriveWithJoystick());
+    setDefaultCommand(new DriveTeleoperated());
   }
 
-  /**s
-   * Use this for cartesian driving in a robot oriented axis.
+  /**
+   * s Use this for cartesian driving in a robot oriented axis.
    * 
-   * @see edu.wpi.first.wpilibj.drive.MecanumDrive#driveCartesian(double, double, double)
+   * @see edu.wpi.first.wpilibj.drive.MecanumDrive#driveCartesian(double, double,
+   *      double)
    */
   public void driveCartesian(double ySpeed, double xSpeed, double zRotation) {
     mecanumDrive.driveCartesian(ySpeed, xSpeed, zRotation);
@@ -54,7 +50,8 @@ public class Drivetrain extends Subsystem {
   /**
    * Use this for cartesian driving in a world oriented axis.
    * 
-   * @see edu.wpi.first.wpilibj.drive.MecanumDrive#driveCartesian(double, double, double, double)
+   * @see edu.wpi.first.wpilibj.drive.MecanumDrive#driveCartesian(double, double,
+   *      double, double)
    */
   public void driveCartesianFieldOriented(double ySpeed, double xSpeed, double zRotation, double gyroAngle) {
     mecanumDrive.driveCartesian(ySpeed, xSpeed, zRotation, gyroAngle);
@@ -63,7 +60,8 @@ public class Drivetrain extends Subsystem {
   /**
    * This method is for driving in a direction relative to the robot in degrees.
    * 
-   * @see edu.wpi.first.wpilibj.drive.MecanumDrive#drivePolar(double, double, double)
+   * @see edu.wpi.first.wpilibj.drive.MecanumDrive#drivePolar(double, double,
+   *      double)
    */
   public void drivePolar(double magnitude, double angle, double zRotation) {
     mecanumDrive.drivePolar(magnitude, angle, zRotation);

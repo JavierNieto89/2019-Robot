@@ -15,15 +15,15 @@ public class MoveCartesian extends Command {
 
   private Drivetrain drivetrain;
 
-	private double xFeet, yFeet;
-	private boolean worldRelative;
+  private double xFeet, yFeet;
+  private boolean worldRelative;
 
   public MoveCartesian(double xFeet, double yFeet, boolean worldRelative) {
-		requires(Robot.getDrivetrain());
-		
-		this.xFeet = xFeet;
-		this.yFeet = yFeet;
-		this.worldRelative = worldRelative;
+    requires(Robot.getDrivetrain());
+
+    this.xFeet = xFeet;
+    this.yFeet = yFeet;
+    this.worldRelative = worldRelative;
   }
 
   @Override
@@ -33,7 +33,7 @@ public class MoveCartesian extends Command {
 
   @Override
   protected void execute() {
-		
+
   }
 
   @Override

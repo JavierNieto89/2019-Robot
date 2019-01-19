@@ -21,19 +21,21 @@ public class LineupCorrectY extends Command {
 
   public LineupCorrectY(String offsetRowName, double offsetFinalLocation) {
     requires(Robot.getDrivetrain());
-    
+
     this.offsetRowName = offsetRowName;
     this.offsetFinalLocation = offsetFinalLocation;
   }
 
   @Override
   protected void initialize() {
-    moveCartesianCommand = new MoveCartesian(0, -(SmartDashboard.getNumber(offsetRowName, 0) - offsetFinalLocation), true);
+    double offsetCorrection = -(SmartDashboard.getNumber(offsetRowName, 0) - offsetFinalLocation);
+
+    moveCartesianCommand = new MoveCartesian(0, offsetCorrection, true);
   }
 
   @Override
   protected boolean isFinished() {
-    if(moveCartesianCommand != null)
+    if (moveCartesianCommand != null)
       return moveCartesianCommand.isCompleted();
     else
       return false;

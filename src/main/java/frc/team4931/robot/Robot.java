@@ -10,6 +10,7 @@ package frc.team4931.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.team4931.robot.sensors.Pigeon;
 import frc.team4931.robot.subsystems.Drivetrain;
 
 /**
@@ -20,17 +21,22 @@ import frc.team4931.robot.subsystems.Drivetrain;
  * project.
  */
 public class Robot extends TimedRobot {
-  
+
   private static Drivetrain drivetrain;
+
+  private static Pigeon pigeon;
+
   private static OperatorInput operatorInput;
 
   /**
-   * This function is run when the robot is first started up and should be
-   * used for any initialization code.
+   * This function is run when the robot is first started up and should be used
+   * for any initialization code.
    */
   @Override
   public void robotInit() {
     drivetrain = new Drivetrain();
+
+    pigeon = new Pigeon();
 
     operatorInput = new OperatorInput();
 
@@ -38,12 +44,13 @@ public class Robot extends TimedRobot {
   }
 
   /**
-   * This function is called every robot packet, no matter the mode. Use
-   * this for items like diagnostics that you want ran during disabled,
-   * autonomous, teleoperated and test.
+   * This function is called every robot packet, no matter the mode. Use this for
+   * items like diagnostics that you want ran during disabled, autonomous,
+   * teleoperated and test.
    *
-   * <p>This runs after the mode specific periodic functions, but before
-   * LiveWindow and SmartDashboard integrated updating.
+   * <p>
+   * This runs after the mode specific periodic functions, but before LiveWindow
+   * and SmartDashboard integrated updating.
    */
   @Override
   public void robotPeriodic() {
@@ -52,6 +59,10 @@ public class Robot extends TimedRobot {
 
   public static Drivetrain getDrivetrain() {
     return drivetrain;
+  }
+
+  public static Pigeon getPigeon() {
+    return pigeon;
   }
 
   public static OperatorInput getOperatorInput() {

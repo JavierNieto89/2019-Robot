@@ -30,5 +30,5 @@ public class RobotMap {
   public final static int MOTOR_DT_BACK_RIGHT = 4;
 
   public final static int JOYSTICK = 1;
-  
+
 }

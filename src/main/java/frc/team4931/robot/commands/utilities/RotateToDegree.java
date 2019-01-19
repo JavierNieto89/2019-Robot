@@ -13,14 +13,14 @@ import frc.team4931.robot.subsystems.Drivetrain;
 
 public class RotateToDegree extends Command {
 
- private Drivetrain drivetrain;
+  private Drivetrain drivetrain;
 
   private double targetDegree;
 
   public RotateToDegree(double targetDegree) {
-		requires(Robot.getDrivetrain());
-		
-		this.targetDegree = targetDegree;
+    requires(Robot.getDrivetrain());
+
+    this.targetDegree = targetDegree;
   }
 
   @Override
@@ -30,7 +30,7 @@ public class RotateToDegree extends Command {
 
   @Override
   protected void execute() {
-		
+
   }
 
   @Override

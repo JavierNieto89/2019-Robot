@@ -12,12 +12,12 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.team4931.robot.Robot;
 import frc.team4931.robot.subsystems.Drivetrain;
 
-public class DriveWithJoystick extends Command {
+public class DriveTeleoperated extends Command {
 
- private Joystick joystick;
- private Drivetrain drivetrain;
+  private Joystick joystick;
+  private Drivetrain drivetrain;
 
-  public DriveWithJoystick() {
+  public DriveTeleoperated() {
     requires(Robot.getDrivetrain());
   }
 

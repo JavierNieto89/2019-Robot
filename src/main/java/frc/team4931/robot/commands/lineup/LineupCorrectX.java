@@ -21,19 +21,21 @@ public class LineupCorrectX extends Command {
 
   public LineupCorrectX(String distanceRowName, double distanceFinalLocation) {
     requires(Robot.getDrivetrain());
-    
+
     this.distanceRowName = distanceRowName;
     this.distanceFinalLocation = distanceFinalLocation;
   }
 
   @Override
   protected void initialize() {
-    moveCartesianCommand = new MoveCartesian(0, SmartDashboard.getNumber(distanceRowName, 0) - distanceFinalLocation, true);
+    double distanceCorrection = SmartDashboard.getNumber(distanceRowName, 0) - distanceFinalLocation;
+
+    moveCartesianCommand = new MoveCartesian(0, distanceCorrection, true);
   }
 
   @Override
   protected boolean isFinished() {
-    if(moveCartesianCommand != null)
+    if (moveCartesianCommand != null)
       return moveCartesianCommand.isCompleted();
     else
       return false;
