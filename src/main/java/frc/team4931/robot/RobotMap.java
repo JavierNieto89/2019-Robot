@@ -31,4 +31,12 @@ public class RobotMap {
 
   public final static int JOYSTICK = 1;
 
+  public final static int COMPRESSOR = 1;
+
+  //forward solenoid channel to extend hatch grabber pistons
+  public final static int HATCH_GRABBER_EXTEND = 2;
+
+  //reverse solenoid channel to extend hatch grabber pistons
+  public final static int HATCH_GRABBER_RETRACT = 3;
+
 }
