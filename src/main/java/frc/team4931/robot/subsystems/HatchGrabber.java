@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.team4931.robot.RobotMap;
-import frc.team4931.robot.commands.ChangeHatchGrabberState;
+// import frc.team4931.robot.commands.ChangeHatchGrabberState;
 
 public class HatchGrabber extends Subsystem {
 
@@ -12,10 +12,8 @@ public class HatchGrabber extends Subsystem {
 
     public HatchGrabber() {
 
-        pneumatic = new DoubleSolenoid(
-            RobotMap.COMPRESSOR,
-            RobotMap.HATCH_GRABBER_EXTEND, 
-            RobotMap.HATCH_GRABBER_RETRACT);
+        pneumatic = new DoubleSolenoid(RobotMap.COMPRESSOR, RobotMap.HATCH_GRABBER_EXTEND,
+                RobotMap.HATCH_GRABBER_RETRACT);
 
     }
 
@@ -29,6 +27,5 @@ public class HatchGrabber extends Subsystem {
     public void resetHatchGrabber() {
         pneumatic.set(Value.kReverse);
     }
-
 
 }
