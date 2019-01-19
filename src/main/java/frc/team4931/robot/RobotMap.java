@@ -25,9 +25,10 @@ public class RobotMap {
   // public static int rangefinderModule = 1;
 
   public final static int MOTOR_DT_FRONT_LEFT = 1;
-  public final static int MOTOR_DT_FRONT_RIGHT = 1;
-  public final static int MOTOR_DT_BACK_LEFT = 1;
-  public final static int MOTOR_DT_BACK_RIGHT = 1;
+  public final static int MOTOR_DT_FRONT_RIGHT = 2;
+  public final static int MOTOR_DT_BACK_LEFT = 3;
+  public final static int MOTOR_DT_BACK_RIGHT = 4;
 
   public final static int JOYSTICK = 1;
+  
 }

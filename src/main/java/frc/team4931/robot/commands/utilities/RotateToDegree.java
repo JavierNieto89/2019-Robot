@@ -5,31 +5,32 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.team4931.robot.commands;
+package frc.team4931.robot.commands.utilities;
 
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.team4931.robot.Robot;
 import frc.team4931.robot.subsystems.Drivetrain;
 
-public class DriveWithJoystick extends Command {
+public class RotateToDegree extends Command {
 
- private Joystick joystick;
  private Drivetrain drivetrain;
 
-  public DriveWithJoystick() {
-    requires(Robot.getDrivetrain());
+  private double targetDegree;
+
+  public RotateToDegree(double targetDegree) {
+		requires(Robot.getDrivetrain());
+		
+		this.targetDegree = targetDegree;
   }
 
   @Override
   protected void initialize() {
-    joystick = Robot.getOperatorInput().getJoystick();
     drivetrain = Robot.getDrivetrain();
   }
 
   @Override
   protected void execute() {
-    drivetrain.driveCartesian(joystick.getY(), joystick.getX(), joystick.getZ());
+		
   }
 
   @Override

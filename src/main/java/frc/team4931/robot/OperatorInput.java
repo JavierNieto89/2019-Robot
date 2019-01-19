@@ -49,6 +49,6 @@ public class OperatorInput {
   }
 
   public Joystick getJoystick() {
-   return joystick; 
+    return joystick; 
   }
 }

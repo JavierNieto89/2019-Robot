@@ -8,18 +8,14 @@
 package frc.team4931.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.sensors.PigeonIMU;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import frc.team4931.robot.RobotMap;
 import frc.team4931.robot.commands.DriveWithJoystick;
 
-/**
- * An example subsystem.  You can replace me with your own Subsystem.
- */
 public class Drivetrain extends Subsystem {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
 
   private WPI_TalonSRX motorFrontLeft;
   private WPI_TalonSRX motorFrontRight;
@@ -28,6 +24,8 @@ public class Drivetrain extends Subsystem {
 
   private MecanumDrive mecanumDrive;
 
+  private PigeonIMU pigeon;
+
   public Drivetrain() {
     motorFrontLeft = new WPI_TalonSRX(RobotMap.MOTOR_DT_FRONT_LEFT);
     motorFrontRight = new WPI_TalonSRX(RobotMap.MOTOR_DT_FRONT_RIGHT);
@@ -35,6 +33,8 @@ public class Drivetrain extends Subsystem {
     motorBackRight = new WPI_TalonSRX(RobotMap.MOTOR_DT_BACK_RIGHT);
 
     mecanumDrive = new MecanumDrive(motorFrontLeft, motorFrontRight, motorBackLeft, motorBackRight);
+
+    // pigeon = new PigeonIMU(?); FIXME: How are we connecting the pigeon? It looks like you can either use a talon or device port
   }
 
   @Override
@@ -42,7 +42,7 @@ public class Drivetrain extends Subsystem {
     setDefaultCommand(new DriveWithJoystick());
   }
 
-  /**
+  /**s
    * Use this for cartesian driving in a robot oriented axis.
    * 
    * @see edu.wpi.first.wpilibj.drive.MecanumDrive#driveCartesian(double, double, double)

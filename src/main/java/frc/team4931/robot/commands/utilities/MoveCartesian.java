@@ -5,31 +5,35 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.team4931.robot.commands;
+package frc.team4931.robot.commands.utilities;
 
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.team4931.robot.Robot;
 import frc.team4931.robot.subsystems.Drivetrain;
 
-public class DriveWithJoystick extends Command {
+public class MoveCartesian extends Command {
 
- private Joystick joystick;
- private Drivetrain drivetrain;
+  private Drivetrain drivetrain;
 
-  public DriveWithJoystick() {
-    requires(Robot.getDrivetrain());
+	private double xFeet, yFeet;
+	private boolean worldRelative;
+
+  public MoveCartesian(double xFeet, double yFeet, boolean worldRelative) {
+		requires(Robot.getDrivetrain());
+		
+		this.xFeet = xFeet;
+		this.yFeet = yFeet;
+		this.worldRelative = worldRelative;
   }
 
   @Override
   protected void initialize() {
-    joystick = Robot.getOperatorInput().getJoystick();
     drivetrain = Robot.getDrivetrain();
   }
 
   @Override
   protected void execute() {
-    drivetrain.driveCartesian(joystick.getY(), joystick.getX(), joystick.getZ());
+		
   }
 
   @Override
