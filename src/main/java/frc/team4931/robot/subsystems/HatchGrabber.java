@@ -22,16 +22,6 @@ public class HatchGrabber extends Subsystem {
     protected void initDefaultCommand() {
     }
 
-    public void changeHatchGrabberState() {
-        if(pneumatic.get() == Value.kForward) {
-            pneumatic.set(Value.kReverse);
-        }
-
-        if(pneumatic.get() == Value.kReverse) {
-            pneumatic.set(Value.kForward);
-        }
-    }
-
     public void extendHatchGrabber() {
         pneumatic.set(Value.kForward);
     }
