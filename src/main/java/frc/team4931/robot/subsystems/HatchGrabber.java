@@ -4,7 +4,6 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.team4931.robot.RobotMap;
-import frc.team4931.robot.commands.ChangeHatchGrabberState;
 
 public class HatchGrabber extends Subsystem {
 
