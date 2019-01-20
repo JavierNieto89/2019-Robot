@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team4931.robot.sensors.Pigeon;
+import frc.team4931.robot.subsystems.Climber;
 import frc.team4931.robot.subsystems.Drivetrain;
 import frc.team4931.robot.subsystems.HatchGrabber;
 
@@ -31,6 +32,8 @@ public class Robot extends TimedRobot {
 
   private static HatchGrabber hatchGrabber;
 
+  private static Climber climber;
+
   /**
    * This function is run when the robot is first started up and should be used
    * for any initialization code.
@@ -44,6 +47,8 @@ public class Robot extends TimedRobot {
     operatorInput = new OperatorInput();
 
     hatchGrabber = new HatchGrabber();
+
+    climber = new Climber();
 
     SmartDashboard.putData(drivetrain);
   }
@@ -76,5 +81,9 @@ public class Robot extends TimedRobot {
 
   public static HatchGrabber getHatchGrabber() {
     return hatchGrabber;
+  }
+
+  public static Climber getClimber() {
+    return climber;
   }
 }
