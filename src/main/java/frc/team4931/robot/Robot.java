@@ -7,6 +7,7 @@
 
 package frc.team4931.robot;
 
+import com.ctre.phoenix.sensors.PigeonIMU;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -36,7 +37,7 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     drivetrain = new Drivetrain();
 
-    pigeon = new Pigeon();
+    pigeon = new Pigeon(RobotMap.PIGEON_IMU);
 
     operatorInput = new OperatorInput();
 
@@ -55,6 +56,8 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     Scheduler.getInstance().run();
+
+    SmartDashboard.putNumber("Gyro Angle", pigeon.getAngle());
   }
 
   public static Drivetrain getDrivetrain() {

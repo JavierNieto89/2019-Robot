@@ -66,4 +66,11 @@ public class Drivetrain extends Subsystem {
   public void drivePolar(double magnitude, double angle, double zRotation) {
     mecanumDrive.drivePolar(magnitude, angle, zRotation);
   }
+
+  /**
+   * Sets all motors to stop.
+   */
+  public void stop() {
+    mecanumDrive.stopMotor();
+  }
 }
