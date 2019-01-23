@@ -14,6 +14,7 @@ import frc.team4931.robot.sensors.Pigeon;
 import frc.team4931.robot.subsystems.Climber;
 import frc.team4931.robot.subsystems.Drivetrain;
 import frc.team4931.robot.subsystems.HatchGrabber;
+import frc.team4931.robot.subsystems.Climber;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -33,7 +34,7 @@ public class Robot extends TimedRobot {
   private static HatchGrabber hatchGrabber;
 
   private static Climber climber;
-
+  
   /**
    * This function is run when the robot is first started up and should be used
    * for any initialization code.
