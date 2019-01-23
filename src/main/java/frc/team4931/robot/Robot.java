@@ -11,6 +11,7 @@ import com.ctre.phoenix.sensors.PigeonIMU;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.team4931.robot.commands.lineup.LineupWithTarget;
 import frc.team4931.robot.sensors.Pigeon;
 import frc.team4931.robot.subsystems.Drivetrain;
 import frc.team4931.robot.subsystems.HatchGrabber;
@@ -40,7 +41,8 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     drivetrain = new Drivetrain();
 
-    pigeon = new Pigeon(RobotMap.PIGEON_IMU);
+    pigeon = new Pigeon();
+    pigeon.reset();
 
     operatorInput = new OperatorInput();
 
@@ -63,6 +65,11 @@ public class Robot extends TimedRobot {
     Scheduler.getInstance().run();
 
     SmartDashboard.putNumber("Gyro Angle", pigeon.getAngle());
+  }
+
+  @Override
+  public void autonomousInit() {
+    new LineupWithTarget().start();
   }
 
   public static Drivetrain getDrivetrain() {

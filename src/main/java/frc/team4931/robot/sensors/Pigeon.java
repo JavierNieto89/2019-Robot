@@ -7,6 +7,7 @@
 
 package frc.team4931.robot.sensors;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.sensors.PigeonIMU;
 import frc.team4931.robot.Robot;
 import frc.team4931.robot.RobotMap;
@@ -15,16 +16,18 @@ public class Pigeon {
 
   private PigeonIMU pigeon;
 
-  public Pigeon(int port) {
-    pigeon = new PigeonIMU(port);
+  public Pigeon() {
+    pigeon = new PigeonIMU(Robot.getDrivetrain().motorBackLeft);
+
     pigeon.configFactoryDefault();
   }
 
   public double getAngle() {
-    // TODO Change to FusedHeading?
-    var YPR = new double[3];
-    pigeon.getYawPitchRoll(YPR);
+    // TODO change to -180 to 180
+    return -pigeon.getFusedHeading();
+  }
 
-    return YPR[0];
+  public void reset() {
+    pigeon.setFusedHeading(0);
   }
 }
