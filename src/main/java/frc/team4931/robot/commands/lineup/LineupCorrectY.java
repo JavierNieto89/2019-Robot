@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team4931.robot.Robot;
 import frc.team4931.robot.commands.utilities.MoveCartesian;
 
+@Deprecated
 public class LineupCorrectY extends Command {
 
   private String offsetRowName;
