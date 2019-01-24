@@ -11,17 +11,26 @@ import frc.team4931.robot.subsystems.Drivetrain;
 public class LineupWithTarget extends Command {
   private static final String DISTANCE_KEY = "Vision Distance";
   private static final String OFFSET_KEY = "Vision Offset";
-  private static final double ROTATION_SNAP_POINTS = 8;
-  private static final double DEGREES_PER_POINT = 360 / ROTATION_SNAP_POINTS;
   private static final double ANGLE_CORRECTION = 0.5; // AKA Max speed
   private static final double OFFSET_CORRECTION = 0.5; // AKA speed per foot
   private static final double DISTANCE_CORRECTION = 0.3; // AKA speed per foot
+  private static final double MAX_SPEED = 0.3;
   private Drivetrain drivetrain;
   private Pigeon pigeon;
   private boolean finished;
+  private int targetAngle;
+  private boolean useCurrentAngle = false;
 
   public LineupWithTarget() {
     drivetrain = Robot.getDrivetrain();
+    useCurrentAngle = true;
+    requires(drivetrain);
+    setInterruptible(true);
+  }
+
+  public LineupWithTarget(Angles angle) {
+    drivetrain = Robot.getDrivetrain();
+    targetAngle = angle.getAngle();
     requires(drivetrain);
     setInterruptible(true);
   }
@@ -55,6 +64,9 @@ public class LineupWithTarget extends Command {
   protected void initialize() {
     pigeon = Robot.getPigeon();
     finished = false;
+
+    if (useCurrentAngle)
+      targetAngle = getClosestAngle(pigeon.getAngle());
   }
 
   @Override
@@ -65,20 +77,19 @@ public class LineupWithTarget extends Command {
     var curAngle = pigeon.getAngle();
 
     // Calculate how far from the nearest preset angle in degrees
-    var targetAngle = Math.round(curAngle / DEGREES_PER_POINT) * DEGREES_PER_POINT;
-    var deltaTarget = (targetAngle - curAngle); //Positive if robot is in a clockwise rotation
+    var deltaTarget = curAngle - targetAngle; //Positive if robot is in a clockwise rotation
 
     // Calculate correction values
-    var angleCorrection = deltaTarget / (DEGREES_PER_POINT / 2) * ANGLE_CORRECTION;
+    var angleCorrection = -deltaTarget / 30 * ANGLE_CORRECTION;
     var offsetCorrection = Math.pow(Math.max(1 - Math.abs(angleCorrection), 0), 2) * curOffset * OFFSET_CORRECTION;
     var distanceCorrection = Math.pow(Math.max(1 - Math.abs(offsetCorrection), 0), 2) * curDistance * DISTANCE_CORRECTION;
 
     if (Math.abs(deltaTarget) < 3 && Math.abs(curOffset) < 0.15 && Math.abs(curDistance) < 0.15)
       finished = true;
 
-    angleCorrection = range(angleCorrection) / 3;
-    offsetCorrection = range(offsetCorrection) / 3;
-    distanceCorrection = range(distanceCorrection) / 3;
+    angleCorrection = range(angleCorrection) * MAX_SPEED;
+    offsetCorrection = range(offsetCorrection) * MAX_SPEED;
+    distanceCorrection = range(distanceCorrection) * MAX_SPEED;
 
     drivetrain.driveCartesian(distanceCorrection, offsetCorrection, angleCorrection);
   }
