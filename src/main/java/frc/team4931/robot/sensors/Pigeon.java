@@ -16,8 +16,8 @@ public class Pigeon {
 
   private PigeonIMU pigeon;
 
-  public Pigeon() {
-    pigeon = new PigeonIMU(Robot.getDrivetrain().motorBackLeft);
+  public Pigeon(WPI_TalonSRX motor) {
+    pigeon = new PigeonIMU(motor);
 
     pigeon.configFactoryDefault();
   }

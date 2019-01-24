@@ -13,12 +13,13 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import frc.team4931.robot.RobotMap;
 import frc.team4931.robot.commands.DriveTeleoperated;
+import frc.team4931.robot.enums.DriveMotors;
 
 public class Drivetrain extends Subsystem {
 
   private WPI_TalonSRX motorFrontLeft;
   private WPI_TalonSRX motorFrontRight;
-  public WPI_TalonSRX motorBackLeft;
+  private WPI_TalonSRX motorBackLeft;
   private WPI_TalonSRX motorBackRight;
 
   private MecanumDrive mecanumDrive;
@@ -65,6 +66,28 @@ public class Drivetrain extends Subsystem {
    */
   public void drivePolar(double magnitude, double angle, double zRotation) {
     mecanumDrive.drivePolar(magnitude, angle, zRotation);
+  }
+
+  public WPI_TalonSRX getMotor(DriveMotors motor) {
+    WPI_TalonSRX returnMotor;
+    switch (motor) {
+      case FRONT_LEFT:
+        returnMotor = motorFrontLeft;
+        break;
+      case FRONT_RIGHT:
+        returnMotor = motorFrontRight;
+        break;
+      case BACK_LEFT:
+        returnMotor = motorBackLeft;
+        break;
+      case BACK_RIGHT:
+        returnMotor = motorBackRight;
+        break;
+      default:
+        returnMotor = motorBackLeft;
+        break;
+    }
+    return returnMotor;
   }
 
   /**
