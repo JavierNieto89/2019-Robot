@@ -24,12 +24,17 @@ public class RobotMap {
   // public static int rangefinderPort = 1;
   // public static int rangefinderModule = 1;
 
-  public final static int MOTOR_DT_FRONT_LEFT = 1;
-  public final static int MOTOR_DT_FRONT_RIGHT = 2;
-  public final static int MOTOR_DT_BACK_LEFT = 3;
-  public final static int MOTOR_DT_BACK_RIGHT = 4;
+  public final static int MOTOR_DT_FRONT_LEFT = 2;
+  public final static int MOTOR_DT_FRONT_RIGHT = 3;
+  public final static int MOTOR_DT_BACK_LEFT = 4;
+  public final static int MOTOR_DT_BACK_RIGHT = 1;
 
-  public final static int JOYSTICK = 1;
+  /**
+   * Talon SRX port that the talon is attached to
+   */
+  public final static int PIGEON_IMU = 4;
+
+  public final static int JOYSTICK = 0;
 
   public final static int COMPRESSOR = 1;
 

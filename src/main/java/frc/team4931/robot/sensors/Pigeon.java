@@ -7,16 +7,27 @@
 
 package frc.team4931.robot.sensors;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.sensors.PigeonIMU;
+import frc.team4931.robot.Robot;
+import frc.team4931.robot.RobotMap;
 
 public class Pigeon {
 
   private PigeonIMU pigeon;
 
   public Pigeon() {
-    // pigeon = new PigeonIMU(?); FIXME: How are we connecting the pigeon? It looks
-    // like you can either use a talon or device port
+    pigeon = new PigeonIMU(Robot.getDrivetrain().motorBackLeft);
 
-    // pigeon.configFactoryDefault();
+    pigeon.configFactoryDefault();
+  }
+
+  public double getAngle() {
+    // TODO change to -180 to 180
+    return -pigeon.getFusedHeading();
+  }
+
+  public void reset() {
+    pigeon.setFusedHeading(0);
   }
 }

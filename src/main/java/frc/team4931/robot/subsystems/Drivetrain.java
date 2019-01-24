@@ -18,7 +18,7 @@ public class Drivetrain extends Subsystem {
 
   private WPI_TalonSRX motorFrontLeft;
   private WPI_TalonSRX motorFrontRight;
-  private WPI_TalonSRX motorBackLeft;
+  public WPI_TalonSRX motorBackLeft;
   private WPI_TalonSRX motorBackRight;
 
   private MecanumDrive mecanumDrive;
@@ -65,5 +65,12 @@ public class Drivetrain extends Subsystem {
    */
   public void drivePolar(double magnitude, double angle, double zRotation) {
     mecanumDrive.drivePolar(magnitude, angle, zRotation);
+  }
+
+  /**
+   * Sets all motors to stop.
+   */
+  public void stop() {
+    mecanumDrive.stopMotor();
   }
 }
