@@ -9,9 +9,4 @@ public class ShootHatch extends CommandGroup {
         addSequential(new ExtendHatchGrabber());
         addSequential(new ResetHatchGrabber());
     }
-
-    @Override
-    protected boolean isFinished() {
-        return true;
-    }
 }
