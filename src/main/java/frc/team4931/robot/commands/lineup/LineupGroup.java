@@ -8,6 +8,7 @@
 package frc.team4931.robot.commands.lineup;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.WaitCommand;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team4931.robot.commands.SnapToDegree;
 
