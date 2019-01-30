@@ -10,7 +10,6 @@ package frc.team4931.robot.commands.lineup;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team4931.robot.commands.SnapToDegree;
-import frc.team4931.robot.commands.utilities.Wait;
 
 public class LineupGroup extends CommandGroup {
 
@@ -61,9 +60,9 @@ public class LineupGroup extends CommandGroup {
      */
 
     addSequential(new SnapToDegree(ROTATION_SNAP_POINTS));
-    addSequential(new Wait(PI_DELAY_MS));
+    addSequential(new WaitCommand(PI_DELAY_MS));
     addSequential(new LineupCorrectY(OFFSET_ROW_NAME, FINAL_LOCATION_OFFSET));
-    addSequential(new Wait(PI_DELAY_MS));
+    addSequential(new WaitCommand(PI_DELAY_MS));
     addSequential(new LineupCorrectX(DISTANCE_ROW_NAME, FINAL_LOCATION_DISTANCE));
   }
 }
