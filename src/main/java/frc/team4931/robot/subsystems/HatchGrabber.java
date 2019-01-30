@@ -13,6 +13,7 @@ public class HatchGrabber extends Subsystem {
 
         pneumatic = new DoubleSolenoid(RobotMap.COMPRESSOR, RobotMap.HATCH_GRABBER_EXTEND,
                 RobotMap.HATCH_GRABBER_RETRACT);
+        pneumatic.set(Value.kReverse);
 
     }
 
