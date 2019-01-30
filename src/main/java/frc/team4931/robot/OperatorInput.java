@@ -8,6 +8,15 @@
 package frc.team4931.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.buttons.POVButton;
+import frc.team4931.robot.commands.ShootHatch;
+import frc.team4931.robot.commands.ArmStop;
+import frc.team4931.robot.commands.ExtendClimberArm;
+import frc.team4931.robot.commands.RetractClimberArm;
+import frc.team4931.robot.commands.Latch;
+import frc.team4931.robot.commands.Release;
+import edu.wpi.first.wpilibj.buttons.Button;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -46,6 +55,23 @@ public class OperatorInput {
 
   public OperatorInput() {
     joystick = new Joystick(RobotMap.JOYSTICK);
+
+    Button bamBam = new JoystickButton(joystick, 1);
+    bamBam.whenPressed(new ShootHatch());
+
+    Button unwindWench = new POVButton(joystick, 0);
+    unwindWench.whileHeld(new ExtendClimberArm());
+    unwindWench.whenReleased(new ArmStop());
+
+    Button windWench = new POVButton(joystick, 180);
+    windWench.whileHeld(new RetractClimberArm());
+    windWench.whenReleased(new ArmStop());
+
+    Button latch = new JoystickButton(joystick, 3);
+    latch.whenPressed(new Latch());
+
+    Button release = new JoystickButton(joystick, 4);
+    release.whenPressed(new Release());
   }
 
   public Joystick getJoystick() {

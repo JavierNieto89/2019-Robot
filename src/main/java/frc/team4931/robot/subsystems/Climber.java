@@ -30,6 +30,10 @@ public class Climber extends Subsystem {
         wenchMotor.set(-1);
     }
 
+    public void armStop() {
+        wenchMotor.set(0);
+    }
+
     public void latch() {
         pneumatics.set(Value.kForward);
     }
