@@ -6,12 +6,12 @@ import frc.team4931.robot.Robot;
 public class ResetHatchGrabber extends Command {
 
     public ResetHatchGrabber() {
-        requires(Robot.getHatchGrabber());
+        // requires(Robot.getHatchGrabber());
     }
 
     @Override
     protected void initialize() {
-        Robot.getHatchGrabber().resetHatchGrabber();
+        // Robot.getHatchGrabber().resetHatchGrabber();
     }
 
     @Override

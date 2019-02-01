@@ -29,7 +29,7 @@ public class DriveTeleoperated extends Command {
 
   @Override
   protected void execute() {
-    drivetrain.driveCartesian(joystick.getY(), joystick.getX(), joystick.getZ());
+    drivetrain.driveCartesian(-joystick.getY(), joystick.getX(), joystick.getZ());
   }
 
   @Override
