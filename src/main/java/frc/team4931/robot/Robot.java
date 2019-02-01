@@ -51,15 +51,15 @@ public class Robot extends TimedRobot {
     pigeon = new Pigeon();
     pigeon.reset();
 
-    operatorInput = new OperatorInput();
+    hatchGrabber = new HatchGrabber();
 
-    //hatchGrabber = new HatchGrabber();
+    climber = new Climber();
 
-    //climber = new Climber();
-
-    compressor = new Compressor();
+    compressor = new Compressor(RobotMap.COMPRESSOR);
     compressor.setClosedLoopControl(true);
     compressor.start();
+
+    operatorInput = new OperatorInput();
 
     SmartDashboard.putData(drivetrain);
   }
@@ -82,7 +82,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
-    //new LineupWithTarget().start();
+    new LineupWithTarget().start();
   }
 
   public void teleopInit() {

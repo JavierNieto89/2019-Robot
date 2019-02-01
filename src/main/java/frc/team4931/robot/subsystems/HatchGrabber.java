@@ -11,9 +11,9 @@ public class HatchGrabber extends Subsystem {
 
     public HatchGrabber() {
 
-        // pneumatic = new DoubleSolenoid(RobotMap.COMPRESSOR, RobotMap.HATCH_GRABBER_EXTEND,
-                // RobotMap.HATCH_GRABBER_RETRACT);
-        // pneumatic.set(Value.kReverse);
+        pneumatic = new DoubleSolenoid(RobotMap.COMPRESSOR, RobotMap.HATCH_GRABBER_EXTEND,
+                RobotMap.HATCH_GRABBER_RETRACT);
+        pneumatic.set(Value.kReverse);
 
     }
 
@@ -21,11 +21,11 @@ public class HatchGrabber extends Subsystem {
     }
 
     public void extendHatchGrabber() {
-        // pneumatic.set(Value.kForward);
+        pneumatic.set(Value.kForward);
     }
 
     public void resetHatchGrabber() {
-        // pneumatic.set(Value.kReverse);
+        pneumatic.set(Value.kReverse);
     }
 
 }

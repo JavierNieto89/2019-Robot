@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class ShootHatch extends CommandGroup {
 
     public ShootHatch() {
+        System.out.println("ran Shoot Hatch");
         addSequential(new ExtendHatchGrabber());
         addSequential(new ResetHatchGrabber());
     }
