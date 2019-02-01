@@ -56,22 +56,22 @@ public class OperatorInput {
   public OperatorInput() {
     joystick = new Joystick(RobotMap.JOYSTICK);
 
-    Button bamBam = new JoystickButton(joystick, 1);
-    bamBam.whenPressed(new ShootHatch());
+    // Button bamBam = new JoystickButton(joystick, 1);
+    // bamBam.whenPressed(new ShootHatch());
 
-    Button unwindWench = new POVButton(joystick, 0);
-    unwindWench.whileHeld(new ExtendClimberArm());
-    unwindWench.whenReleased(new ArmStop());
+    // Button unwindWench = new POVButton(joystick, 0);
+    // unwindWench.whileHeld(new ExtendClimberArm());
+    // unwindWench.whenReleased(new ArmStop());
 
-    Button windWench = new POVButton(joystick, 180);
-    windWench.whileHeld(new RetractClimberArm());
-    windWench.whenReleased(new ArmStop());
+    // Button windWench = new POVButton(joystick, 180);
+    // windWench.whileHeld(new RetractClimberArm());
+    // windWench.whenReleased(new ArmStop());
 
-    Button latch = new JoystickButton(joystick, 3);
-    latch.whenPressed(new Latch());
+    // Button latch = new JoystickButton(joystick, 3);
+    // latch.whenPressed(new Latch());
 
-    Button release = new JoystickButton(joystick, 4);
-    release.whenPressed(new Release());
+    // Button release = new JoystickButton(joystick, 4);
+    // release.whenPressed(new Release());
   }
 
   public Joystick getJoystick() {
