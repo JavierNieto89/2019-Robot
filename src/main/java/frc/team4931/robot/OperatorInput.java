@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.buttons.POVButton;
 import frc.team4931.robot.commands.ShootHatch;
 import frc.team4931.robot.commands.ArmStop;
+import frc.team4931.robot.commands.ChangeVelcroState;
 import frc.team4931.robot.commands.ExtendClimberArm;
 import frc.team4931.robot.commands.ExtendHatchGrabber;
 import frc.team4931.robot.commands.RetractClimberArm;
@@ -58,26 +59,31 @@ public class OperatorInput {
   public OperatorInput() {
     joystick = new Joystick(RobotMap.JOYSTICK);
 
-    Button bamBam = new JoystickButton(joystick, 1);
-    System.out.println("Initializing Button");
+    Button shoot = new JoystickButton(joystick, 1);
+    shoot.whenPressed(new ShootHatch());
+
+    Button changeVelcro = new JoystickButton(joystick, 2);
+    changeVelcro.whenPressed(new ChangeVelcroState());
+
+    Button bamBam = new JoystickButton(joystick, 7);
     bamBam.whenPressed(new ExtendHatchGrabber());
 
-    Button retract = new JoystickButton(joystick, 2);
+    Button retract = new JoystickButton(joystick, 8);
     retract.whenPressed(new ResetHatchGrabber());
 
-    // Button unwindWench = new POVButton(joystick, 0);
-    // unwindWench.whileHeld(new ExtendClimberArm());
-    // unwindWench.whenReleased(new ArmStop());
+    Button unwindWench = new POVButton(joystick, 0);
+    unwindWench.whileHeld(new ExtendClimberArm());
+    unwindWench.whenReleased(new ArmStop());
 
-    // Button windWench = new POVButton(joystick, 180);
-    // windWench.whileHeld(new RetractClimberArm());
-    // windWench.whenReleased(new ArmStop());
+    Button windWench = new POVButton(joystick, 180);
+    windWench.whileHeld(new RetractClimberArm());
+    windWench.whenReleased(new ArmStop());
 
-    // Button latch = new JoystickButton(joystick, 3);
-    // latch.whenPressed(new Latch());
+    Button latch = new JoystickButton(joystick, 3);
+    latch.whenPressed(new Latch());
 
-    // Button release = new JoystickButton(joystick, 4);
-    // release.whenPressed(new Release());
+    Button release = new JoystickButton(joystick, 4);
+    release.whenPressed(new Release());
   }
 
   public Joystick getJoystick() {

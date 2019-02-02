@@ -11,7 +11,6 @@ public class ExtendHatchGrabber extends Command {
 
     @Override
     protected void initialize() {
-        System.out.println("Extended Hatch Grabber");
         Robot.getHatchGrabber().extendHatchGrabber();
     }
 
