@@ -16,6 +16,7 @@ public class DriveTeleoperated extends Command {
 
   private Joystick joystick;
   private Drivetrain drivetrain;
+  private static final double DEAD_ZONE = 0.1;
 
   public DriveTeleoperated() {
     requires(Robot.getDrivetrain());
@@ -29,7 +30,15 @@ public class DriveTeleoperated extends Command {
 
   @Override
   protected void execute() {
-    drivetrain.driveCartesian(-joystick.getY(), joystick.getX(), joystick.getZ());
+    var forward = -joystick.getY();
+    var strafe = joystick.getX();
+    var rotation = joystick.getZ();
+
+    forward = Math.abs(forward) > DEAD_ZONE ? forward : 0;
+    strafe = Math.abs(strafe) > DEAD_ZONE ? strafe : 0;
+    rotation = Math.abs(rotation) > DEAD_ZONE ? rotation : 0;
+
+    drivetrain.driveCartesian(forward, strafe, rotation);
   }
 
   @Override
