@@ -7,13 +7,23 @@ import frc.team4931.robot.RobotMap;
 
 public class HatchGrabber extends Subsystem {
 
-    private DoubleSolenoid pneumatic;
+    private DoubleSolenoid pneumaticDispenser;
+    private DoubleSolenoid pneumaticTopVelcro;
+    private DoubleSolenoid pneumaticBottomVelcro;
 
     public HatchGrabber() {
 
-        pneumatic = new DoubleSolenoid(RobotMap.COMPRESSOR, RobotMap.HATCH_GRABBER_EXTEND,
-                RobotMap.HATCH_GRABBER_RETRACT);
-        pneumatic.set(Value.kReverse);
+        pneumaticDispenser = new DoubleSolenoid(RobotMap.COMPRESSOR, 
+                RobotMap.DISPENSER_EXTEND, RobotMap.DISPENSER_RETRACT);
+        pneumaticDispenser.set(Value.kReverse);
+
+        pneumaticTopVelcro = new DoubleSolenoid(RobotMap.COMPRESSOR, 
+                RobotMap.TOP_VELCRO_EXTEND, RobotMap.TOP_VELCRO_RETRACT);
+        pneumaticTopVelcro.set(Value.kReverse);
+
+        pneumaticBottomVelcro = new DoubleSolenoid(RobotMap.COMPRESSOR, 
+                RobotMap.BOTTOM_VELCRO_EXTEND, RobotMap.BOTTOM_VELCRO_RETRACT);
+        pneumaticBottomVelcro.set(Value.kReverse);
 
     }
 
@@ -21,11 +31,29 @@ public class HatchGrabber extends Subsystem {
     }
 
     public void extendHatchGrabber() {
-        pneumatic.set(Value.kForward);
+        pneumaticDispenser.set(Value.kForward);
     }
 
     public void resetHatchGrabber() {
-        pneumatic.set(Value.kReverse);
+        pneumaticDispenser.set(Value.kReverse);
+    }
+
+    public void extendVelcro() {
+        pneumaticBottomVelcro.set(Value.kForward);
+        pneumaticTopVelcro.set(Value.kForward);
+    }
+
+    public void retractVelcro() {
+        pneumaticBottomVelcro.set(Value.kReverse);
+        pneumaticBottomVelcro.set(Value.kReverse);
+    }
+
+    public void changeVelcroState() {
+        if(pneumaticTopVelcro.get() == Value.kForward){
+            extendVelcro();
+        } else {
+            retractVelcro();
+        }
     }
 
 }

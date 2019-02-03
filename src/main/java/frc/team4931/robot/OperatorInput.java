@@ -12,10 +12,13 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.buttons.POVButton;
 import frc.team4931.robot.commands.ShootHatch;
 import frc.team4931.robot.commands.ArmStop;
+import frc.team4931.robot.commands.ChangeVelcroState;
 import frc.team4931.robot.commands.ExtendClimberArm;
+import frc.team4931.robot.commands.ExtendHatchGrabber;
 import frc.team4931.robot.commands.RetractClimberArm;
 import frc.team4931.robot.commands.Latch;
 import frc.team4931.robot.commands.Release;
+import frc.team4931.robot.commands.ResetHatchGrabber;
 import edu.wpi.first.wpilibj.buttons.Button;
 
 /**
@@ -56,8 +59,17 @@ public class OperatorInput {
   public OperatorInput() {
     joystick = new Joystick(RobotMap.JOYSTICK);
 
-    Button bamBam = new JoystickButton(joystick, 1);
-    bamBam.whenPressed(new ShootHatch());
+    Button shoot = new JoystickButton(joystick, 1);
+    shoot.whenPressed(new ShootHatch());
+
+    Button changeVelcro = new JoystickButton(joystick, 2);
+    changeVelcro.whenPressed(new ChangeVelcroState());
+
+    Button bamBam = new JoystickButton(joystick, 7);
+    bamBam.whenPressed(new ExtendHatchGrabber());
+
+    Button retract = new JoystickButton(joystick, 8);
+    retract.whenPressed(new ResetHatchGrabber());
 
     Button unwindWench = new POVButton(joystick, 0);
     unwindWench.whileHeld(new ExtendClimberArm());

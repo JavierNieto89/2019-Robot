@@ -11,13 +11,14 @@ import com.ctre.phoenix.sensors.PigeonIMU;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.Compressor;
+
 import frc.team4931.robot.commands.lineup.LineupWithTarget;
 import frc.team4931.robot.enums.DriveMotors;
 import frc.team4931.robot.sensors.Pigeon;
 import frc.team4931.robot.subsystems.Climber;
 import frc.team4931.robot.subsystems.Drivetrain;
 import frc.team4931.robot.subsystems.HatchGrabber;
-import frc.team4931.robot.subsystems.Climber;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -37,6 +38,8 @@ public class Robot extends TimedRobot {
   private static HatchGrabber hatchGrabber;
 
   private static Climber climber;
+
+  private static Compressor compressor;
   
   /**
    * This function is run when the robot is first started up and should be used
@@ -49,11 +52,15 @@ public class Robot extends TimedRobot {
     pigeon = new Pigeon(drivetrain.getMotor(DriveMotors.BACK_LEFT));
     pigeon.reset();
 
-    operatorInput = new OperatorInput();
-
     hatchGrabber = new HatchGrabber();
 
     climber = new Climber();
+
+    compressor = new Compressor(RobotMap.COMPRESSOR);
+    compressor.setClosedLoopControl(true);
+    compressor.start();
+
+    operatorInput = new OperatorInput();
 
     SmartDashboard.putData(drivetrain);
   }
@@ -77,6 +84,14 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     new LineupWithTarget().start();
+  }
+
+  public void teleopInit() {
+    compressor.start();
+  }
+
+  public void disablesInit() {
+    compressor.stop();
   }
 
   public static Drivetrain getDrivetrain() {
