@@ -1,4 +1,4 @@
-package frc.team4931.robot.commands;
+package frc.team4931.robot.commands.climber;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.team4931.robot.Robot;

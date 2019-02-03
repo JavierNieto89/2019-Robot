@@ -1,19 +1,20 @@
-package frc.team4931.robot.commands;
+package frc.team4931.robot.commands.hatchgrabber;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.team4931.robot.Robot;
 
-public class RetractVelcro extends Command {
+public class ResetHatchGrabber extends Command {
 
-    public RetractVelcro() {
+    public ResetHatchGrabber() {
         requires(Robot.getHatchGrabber());
     }
 
+    @Override
     protected void initialize() {
-        Robot.getHatchGrabber().retractVelcro();
+        Robot.getHatchGrabber().resetHatchGrabber();
     }
 
+    @Override
     protected boolean isFinished() {
         return true;
     }

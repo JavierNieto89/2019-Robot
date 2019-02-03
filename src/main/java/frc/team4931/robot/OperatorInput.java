@@ -8,18 +8,9 @@
 package frc.team4931.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.buttons.POVButton;
-import frc.team4931.robot.commands.ShootHatch;
-import frc.team4931.robot.commands.ArmStop;
-import frc.team4931.robot.commands.ChangeVelcroState;
-import frc.team4931.robot.commands.ExtendClimberArm;
-import frc.team4931.robot.commands.ExtendHatchGrabber;
-import frc.team4931.robot.commands.RetractClimberArm;
-import frc.team4931.robot.commands.Latch;
-import frc.team4931.robot.commands.Release;
-import frc.team4931.robot.commands.ResetHatchGrabber;
-import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.*;
+import frc.team4931.robot.commands.hatchgrabber.*;
+import frc.team4931.robot.commands.climber.*;
 
 /**
  * This class is the glue that binds the controls on the physical operator

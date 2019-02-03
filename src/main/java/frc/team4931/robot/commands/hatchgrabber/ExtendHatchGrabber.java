@@ -1,4 +1,4 @@
-package frc.team4931.robot.commands;
+package frc.team4931.robot.commands.hatchgrabber;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.team4931.robot.Robot;
