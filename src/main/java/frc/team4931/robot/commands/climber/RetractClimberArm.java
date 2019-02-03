@@ -1,19 +1,20 @@
-package frc.team4931.robot.commands;
+package frc.team4931.robot.commands.climber;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.team4931.robot.Robot;
 
-public class ArmStop extends Command {
+public class RetractClimberArm extends Command {
 
-    public ArmStop() {
+    public RetractClimberArm() {
         requires(Robot.getClimber());
     }
 
     protected void initialize() {
-        Robot.getClimber().armStop();
+        Robot.getClimber().retractClimberArm();
     }
 
     protected boolean isFinished() {
         return true;
     }
+
 }

@@ -1,17 +1,16 @@
-package frc.team4931.robot.commands;
+package frc.team4931.robot.commands.climber;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.team4931.robot.Robot;
 
-public class ExtendClimberArm extends Command {
+public class Release extends Command {
 
-    public ExtendClimberArm() {
+    public Release() {
         requires(Robot.getClimber());
     }
 
-    @Override
     protected void initialize() {
-        Robot.getClimber().extendClimberArm();
+        Robot.getClimber().release();
     }
 
     @Override

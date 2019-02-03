@@ -1,16 +1,17 @@
-package frc.team4931.robot.commands;
+package frc.team4931.robot.commands.hatchgrabber;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.team4931.robot.subsystems.*;
 import frc.team4931.robot.Robot;
 
-public class ChangeVelcroState extends Command {
-
-    public ChangeVelcroState() {
+public class ExtendVelcro extends Command {
+    
+    public ExtendVelcro() {
         requires(Robot.getHatchGrabber());
     }
 
     protected void initialize() {
-        Robot.getHatchGrabber().changeVelcroState();
+        Robot.getHatchGrabber().extendVelcro();
     }
 
     protected boolean isFinished() {
