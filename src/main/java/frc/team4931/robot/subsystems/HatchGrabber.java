@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.team4931.robot.RobotMap;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class HatchGrabber extends Subsystem {
 
@@ -54,6 +55,13 @@ public class HatchGrabber extends Subsystem {
         } else {
             retractVelcro();
         }
+    }
+
+    public void log() {
+        SmartDashboard.putBoolean("Top Velcro Extended", 
+                pneumaticTopVelcro.get() == Value.kForward ? true : false);
+        SmartDashboard.putBoolean("Bottom Velcro Extended", 
+                pneumaticBottomVelcro.get() == Value.kForward ? true : false);
     }
 
 }
