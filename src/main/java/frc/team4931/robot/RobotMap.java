@@ -7,6 +7,8 @@
 
 package frc.team4931.robot;
 
+import frc.team4931.robot.enums.DriveMotors;
+
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
  * to a variable name. This provides flexibility changing wiring, makes checking
@@ -32,7 +34,7 @@ public class RobotMap {
   /**
    * Talon SRX port that the talon is attached to
    */
-  public final static int PIGEON_IMU = 4;
+  public final static DriveMotors PIGEON_IMU = DriveMotors.BACK_LEFT;
 
   public final static int JOYSTICK = 0;
 

@@ -16,15 +16,21 @@ public class Pigeon {
 
   private PigeonIMU pigeon;
 
-  public Pigeon() {
-    pigeon = new PigeonIMU(Robot.getDrivetrain().motorBackLeft);
+  public Pigeon(WPI_TalonSRX motor) {
+    pigeon = new PigeonIMU(motor);
 
     pigeon.configFactoryDefault();
   }
 
+  /**
+   * Gets the current angle of the Pigeon IMU (Robot).
+   *
+   * @return angle -180 to 180.
+   */
   public double getAngle() {
-    // TODO change to -180 to 180
-    return -pigeon.getFusedHeading();
+    double angle = -pigeon.getFusedHeading() % 360;
+    double out = (angle < -180) ? angle + 360 : angle;
+    return (out > 180) ? out - 360 : out;
   }
 
   public void reset() {

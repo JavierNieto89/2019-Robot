@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team4931.robot.commands.lineup.LineupWithTarget;
+import frc.team4931.robot.enums.DriveMotors;
 import frc.team4931.robot.sensors.Pigeon;
 import frc.team4931.robot.subsystems.Climber;
 import frc.team4931.robot.subsystems.Drivetrain;
@@ -45,7 +46,7 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     drivetrain = new Drivetrain();
 
-    pigeon = new Pigeon();
+    pigeon = new Pigeon(drivetrain.getMotor(DriveMotors.BACK_LEFT));
     pigeon.reset();
 
     operatorInput = new OperatorInput();
