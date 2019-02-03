@@ -12,7 +12,6 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Compressor;
-
 import frc.team4931.robot.commands.lineup.LineupWithTarget;
 import frc.team4931.robot.enums.DriveMotors;
 import frc.team4931.robot.sensors.Pigeon;
@@ -77,8 +76,7 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     Scheduler.getInstance().run();
-
-    SmartDashboard.putNumber("Gyro Angle", pigeon.getAngle());
+    log();
   }
 
   @Override
@@ -112,5 +110,12 @@ public class Robot extends TimedRobot {
 
   public static Climber getClimber() {
     return climber;
+  }
+
+  private void log() {
+    SmartDashboard.putNumber("Gyro Angle", pigeon.getAngle());
+    hatchGrabber.log();
+    drivetrain.log();
+    climber.log();
   }
 }

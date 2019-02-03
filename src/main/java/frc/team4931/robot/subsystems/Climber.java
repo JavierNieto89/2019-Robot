@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.team4931.robot.RobotMap;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Climber extends Subsystem {
 
@@ -40,5 +41,9 @@ public class Climber extends Subsystem {
 
     public void release() {
         pneumatics.set(Value.kReverse);
+    }
+
+    public void log() {
+        SmartDashboard.putNumber("Wench Motor Speed", wenchMotor.get());
     }
 }

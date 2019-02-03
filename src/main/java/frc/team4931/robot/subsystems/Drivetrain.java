@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import frc.team4931.robot.RobotMap;
 import frc.team4931.robot.commands.DriveTeleoperated;
 import frc.team4931.robot.enums.DriveMotors;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Drivetrain extends Subsystem {
 
@@ -97,5 +98,12 @@ public class Drivetrain extends Subsystem {
    */
   public void stop() {
     mecanumDrive.stopMotor();
+  }
+
+  public void log() {
+    SmartDashboard.putNumber("Front Left Motor Speed", motorFrontLeft.get());
+    SmartDashboard.putNumber("Back Left Motor Speed", motorBackLeft.get());
+    SmartDashboard.putNumber("Front Right Motor Speed", motorFrontRight.get());
+    SmartDashboard.putNumber("Back Right Motor Speed", motorBackRight.get());
   }
 }
