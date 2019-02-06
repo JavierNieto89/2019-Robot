@@ -47,16 +47,10 @@ public class RobotMap {
   public final static int DISPENSER_RETRACT = 1;
 
   //forward solenoid channel to extend top velcro pad
-  public final static int TOP_VELCRO_EXTEND = 2;
+  public final static int VELCRO_EXTEND = 2;
 
   //reverse solenoid channel to retract top velcro pad
-  public final static int TOP_VELCRO_RETRACT = 3;
-
-  //forward solenoid channel to extend bottom velcro pad
-  public final static int BOTTOM_VELCRO_EXTEND = 4;
-
-  //reverse solenoid channel to retract bottom velcro pad
-  public final static int BOTTOM_VELCRO_RETRACT = 5;
+  public final static int VELCRO_RETRACT = 3;
 
   //forward solenoid channel for climber pistons to latch onto 3rd level
   public final static int CLIMBER_PISTON_LATCH = 6;
@@ -65,10 +59,10 @@ public class RobotMap {
   public final static int CLIMBER_PISTON_RELEASE = 7;
 
   //forward solenoid channel for hatch grabber pivot pistons
-  public final static int PIVOT_PISTON_EXTEND = 8;
+  public final static int PIVOT_PISTON_EXTEND = 4;
 
   //reverse solenoid channel for hatch grabber pivot pistons
-  public final static int PIVOT_PISTON_RETRACT = 9;
+  public final static int PIVOT_PISTON_RETRACT = 5;
 
   //motor channel for Climber wench
   public final static int CLIMBER_WENCH = 5;

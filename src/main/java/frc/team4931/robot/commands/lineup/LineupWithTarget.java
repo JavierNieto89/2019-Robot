@@ -39,12 +39,12 @@ public class LineupWithTarget extends Command {
   }
 
   private int getClosestAngle(double angle) {
-    var values = Angles.values();
-    var low = -180;
-    var high = 180;
+    Angles[] values = Angles.values();
+    int low = -180;
+    int high = 180;
 
-    for(var i : values) {
-      var ang = i.getAngle();
+    for(Angles i : values) {
+      int ang = i.getAngle();
 
       if (ang <= angle && ang >= low)
         low = ang;
@@ -53,8 +53,8 @@ public class LineupWithTarget extends Command {
         high = ang;
     }
 
-    var diff_low = Math.abs(angle - low);
-    var diff_high = Math.abs(high - angle);
+    double diff_low = Math.abs(angle - low);
+    double diff_high = Math.abs(high - angle);
 
     return (diff_high < diff_low) ? high : low;
   }
@@ -71,17 +71,17 @@ public class LineupWithTarget extends Command {
   @Override
   protected void execute() {
     // Distance and Offset are in feet
-    var curDistance = SmartDashboard.getNumber(DISTANCE_KEY, -1);
-    var curOffset = SmartDashboard.getNumber(OFFSET_KEY, -1);
-    var curAngle = pigeon.getAngle();
+    double curDistance = SmartDashboard.getNumber(DISTANCE_KEY, -1);
+    double curOffset = SmartDashboard.getNumber(OFFSET_KEY, -1);
+    double curAngle = pigeon.getAngle();
 
     // Calculate how far from the nearest preset angle in degrees
-    var deltaTarget = curAngle - targetAngle; //Positive if robot is in a clockwise rotation
+    double deltaTarget = curAngle - targetAngle; //Positive if robot is in a clockwise rotation
 
     // Calculate correction values
-    var angleCorrection = -deltaTarget / 30 * ANGLE_CORRECTION;
-    var offsetCorrection = Math.pow(Math.max(1 - Math.abs(angleCorrection), 0), 2) * curOffset * OFFSET_CORRECTION;
-    var distanceCorrection = Math.pow(Math.max(1 - Math.abs(offsetCorrection), 0), 2) * curDistance * DISTANCE_CORRECTION;
+    double angleCorrection = -deltaTarget / 30 * ANGLE_CORRECTION;
+    double offsetCorrection = Math.pow(Math.max(1 - Math.abs(angleCorrection), 0), 2) * curOffset * OFFSET_CORRECTION;
+    double distanceCorrection = Math.pow(Math.max(1 - Math.abs(offsetCorrection), 0), 2) * curDistance * DISTANCE_CORRECTION;
 
     if (Math.abs(deltaTarget) < 3 && Math.abs(curOffset) < 0.15 && Math.abs(curDistance) < 0.15)
       finished = true;

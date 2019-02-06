@@ -30,9 +30,9 @@ public class DriveTeleoperated extends Command {
 
   @Override
   protected void execute() {
-    var forward = -joystick.getY();
-    var strafe = joystick.getX();
-    var rotation = joystick.getZ();
+    double forward = -joystick.getY();
+    double strafe = joystick.getX();
+    double rotation = joystick.getZ();
 
     forward = Math.abs(forward) > DEAD_ZONE ? forward : 0;
     strafe = Math.abs(strafe) > DEAD_ZONE ? strafe : 0;

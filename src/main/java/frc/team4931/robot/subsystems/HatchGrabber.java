@@ -9,8 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class HatchGrabber extends Subsystem {
 
     private DoubleSolenoid pneumaticDispenser;
-    private DoubleSolenoid pneumaticTopVelcro;
-    private DoubleSolenoid pneumaticBottomVelcro;
+    private DoubleSolenoid pneumaticVelcro;
     private DoubleSolenoid pneumaticPivot;
 
     public HatchGrabber() {
@@ -19,17 +18,14 @@ public class HatchGrabber extends Subsystem {
                 RobotMap.DISPENSER_EXTEND, RobotMap.DISPENSER_RETRACT);
         pneumaticDispenser.set(Value.kReverse);
 
-        pneumaticTopVelcro = new DoubleSolenoid(RobotMap.COMPRESSOR, 
-                RobotMap.TOP_VELCRO_EXTEND, RobotMap.TOP_VELCRO_RETRACT);
-        pneumaticTopVelcro.set(Value.kReverse);
-
-        pneumaticBottomVelcro = new DoubleSolenoid(RobotMap.COMPRESSOR, 
-                RobotMap.BOTTOM_VELCRO_EXTEND, RobotMap.BOTTOM_VELCRO_RETRACT);
-        pneumaticBottomVelcro.set(Value.kReverse);
+        pneumaticVelcro = new DoubleSolenoid(RobotMap.COMPRESSOR, 
+                RobotMap.VELCRO_EXTEND, RobotMap.VELCRO_RETRACT);
+        pneumaticVelcro.set(Value.kReverse);
 
         pneumaticPivot = new DoubleSolenoid(RobotMap.COMPRESSOR,
                 RobotMap.PIVOT_PISTON_EXTEND,
                 RobotMap.PIVOT_PISTON_RETRACT);
+        pneumaticPivot.set(Value.kReverse);
 
     }
 
@@ -45,17 +41,15 @@ public class HatchGrabber extends Subsystem {
     }
 
     public void extendVelcro() {
-        pneumaticBottomVelcro.set(Value.kForward);
-        pneumaticTopVelcro.set(Value.kForward);
+        pneumaticVelcro.set(Value.kForward);
     }
 
     public void retractVelcro() {
-        pneumaticBottomVelcro.set(Value.kReverse);
-        pneumaticBottomVelcro.set(Value.kReverse);
+        pneumaticVelcro.set(Value.kReverse);
     }
 
     public void changeVelcroState() {
-        if(pneumaticTopVelcro.get() == Value.kForward){
+        if(pneumaticVelcro.get() == Value.kForward){
             extendVelcro();
         } else {
             retractVelcro();
@@ -71,10 +65,10 @@ public class HatchGrabber extends Subsystem {
     }
 
     public void log() {
-        SmartDashboard.putBoolean("Top Velcro Extended", 
-                pneumaticTopVelcro.get() == Value.kForward ? true : false);
-        SmartDashboard.putBoolean("Bottom Velcro Extended", 
-                pneumaticBottomVelcro.get() == Value.kForward ? true : false);
+        SmartDashboard.putBoolean("Velcro Extended", 
+                pneumaticVelcro.get() == Value.kForward ? true : false);
+        SmartDashboard.putBoolean("Pivot Exdended", 
+                pneumaticPivot.get() == Value.kForward ? true : false);
     }
 
 }
