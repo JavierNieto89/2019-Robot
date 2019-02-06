@@ -64,6 +64,12 @@ public class RobotMap {
   //reverse solenoid channel for climber pistons to release from 3rd level
   public final static int CLIMBER_PISTON_RELEASE = 7;
 
+  //forward solenoid channel for hatch grabber pivot pistons
+  public final static int PIVOT_PISTON_EXTEND = 8;
+
+  //reverse solenoid channel for hatch grabber pivot pistons
+  public final static int PIVOT_PISTON_RETRACT = 9;
+
   //motor channel for Climber wench
   public final static int CLIMBER_WENCH = 5;
 

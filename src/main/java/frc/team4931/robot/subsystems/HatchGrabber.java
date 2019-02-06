@@ -11,6 +11,7 @@ public class HatchGrabber extends Subsystem {
     private DoubleSolenoid pneumaticDispenser;
     private DoubleSolenoid pneumaticTopVelcro;
     private DoubleSolenoid pneumaticBottomVelcro;
+    private DoubleSolenoid pneumaticPivot;
 
     public HatchGrabber() {
 
@@ -25,6 +26,10 @@ public class HatchGrabber extends Subsystem {
         pneumaticBottomVelcro = new DoubleSolenoid(RobotMap.COMPRESSOR, 
                 RobotMap.BOTTOM_VELCRO_EXTEND, RobotMap.BOTTOM_VELCRO_RETRACT);
         pneumaticBottomVelcro.set(Value.kReverse);
+
+        pneumaticPivot = new DoubleSolenoid(RobotMap.COMPRESSOR,
+                RobotMap.PIVOT_PISTON_EXTEND,
+                RobotMap.PIVOT_PISTON_RETRACT);
 
     }
 
@@ -55,6 +60,14 @@ public class HatchGrabber extends Subsystem {
         } else {
             retractVelcro();
         }
+    }
+
+    public void pivotDown() {
+        pneumaticPivot.set(Value.kForward);
+    }
+
+    public void pivotUp() {
+        pneumaticPivot.set(Value.kReverse);
     }
 
     public void log() {
