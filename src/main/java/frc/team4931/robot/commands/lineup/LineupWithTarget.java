@@ -1,10 +1,9 @@
 package frc.team4931.robot.commands.lineup;
 
-import com.ctre.phoenix.sensors.PigeonIMU;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team4931.robot.Robot;
-import frc.team4931.robot.commands.utilities.RotateToDegree;
+import frc.team4931.robot.enums.Angles;
 import frc.team4931.robot.sensors.Pigeon;
 import frc.team4931.robot.subsystems.Drivetrain;
 

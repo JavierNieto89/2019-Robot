@@ -32,6 +32,8 @@ public class Drivetrain extends Subsystem {
     motorBackRight = new WPI_TalonSRX(RobotMap.MOTOR_DT_BACK_RIGHT);
 
     mecanumDrive = new MecanumDrive(motorFrontLeft, motorFrontRight, motorBackLeft, motorBackRight);
+
+    mecanumDrive.setDeadband(0.05);
   }
 
   @Override

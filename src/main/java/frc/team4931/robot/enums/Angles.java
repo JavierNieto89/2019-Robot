@@ -1,4 +1,4 @@
-package frc.team4931.robot.commands.lineup;
+package frc.team4931.robot.enums;
 
 public enum Angles {
   FORWARD(0), FORWARD_RIGHT(30), RIGHT(90), BACKWARD_RIGHT(150), BACKWARD(180),
@@ -10,7 +10,7 @@ public enum Angles {
     this.angle = angle;
   }
 
-  int getAngle() {
+  public int getAngle() {
     return this.angle;
   }
 }
