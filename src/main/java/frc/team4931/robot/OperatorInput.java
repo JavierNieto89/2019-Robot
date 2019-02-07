@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.*;
 import frc.team4931.robot.commands.hatchgrabber.*;
 import frc.team4931.robot.commands.climber.*;
+import frc.team4931.robot.commands.autonomous.*;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -62,6 +63,12 @@ public class OperatorInput {
     Button retract = new JoystickButton(joystick, 8);
     retract.whenPressed(new ResetHatchGrabber());
 
+    Button pivotDown = new JoystickButton(joystick, 9);
+    pivotDown.whenPressed(new PivotDown());
+
+    Button pivotReset = new JoystickButton(joystick, 10);
+    pivotReset.whenPressed(new PivotUp());
+
     Button unwindWench = new POVButton(joystick, 0);
     unwindWench.whileHeld(new ExtendClimberArm());
     unwindWench.whenReleased(new ArmStop());
@@ -75,6 +82,12 @@ public class OperatorInput {
 
     Button release = new JoystickButton(joystick, 4);
     release.whenPressed(new Release());
+
+    Button getHatch = new JoystickButton(joystick, 11);
+    getHatch.whenPressed(new GetHatchAuto());
+
+    Button placeHatch = new JoystickButton(joystick, 12);
+    placeHatch.whenPressed(new PlaceHatchAuto());
   }
 
   public Joystick getJoystick() {
