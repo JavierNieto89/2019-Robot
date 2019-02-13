@@ -49,7 +49,7 @@ public class HatchGrabber extends Subsystem {
     }
 
     public void changeVelcroState() {
-        if(pneumaticVelcro.get() == Value.kForward){
+        if(pneumaticVelcro.get() == Value.kReverse){
             extendVelcro();
         } else {
             retractVelcro();
