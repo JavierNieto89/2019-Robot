@@ -8,7 +8,7 @@ public class ShootHatch extends CommandGroup {
 
     public ShootHatch() {
         addSequential(new ExtendHatchGrabber());
-        addSequential(new WaitCommand(0.250));
+        addSequential(new WaitCommand(1));
         addSequential(new ResetHatchGrabber());
         addSequential(new RetractVelcro());
     }

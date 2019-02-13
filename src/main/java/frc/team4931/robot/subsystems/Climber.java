@@ -4,6 +4,8 @@ package frc.team4931.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -13,6 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Climber extends Subsystem {
 
     private WPI_TalonSRX wenchMotor = new WPI_TalonSRX(RobotMap.CLIMBER_WENCH);
+    private CANSparkMax motor = new CANSparkMax(RobotMap.CLIMBER_WENCH, MotorType.kBrushless);
 
     private DoubleSolenoid pneumatics = new DoubleSolenoid(
         RobotMap.COMPRESSOR, 
