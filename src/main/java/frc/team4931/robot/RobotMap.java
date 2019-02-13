@@ -16,16 +16,6 @@ import frc.team4931.robot.enums.DriveMotors;
  * floating around.
  */
 public class RobotMap {
-  // For example to map the left and right motors, you could define the
-  // following variables to use with your drivetrain subsystem.
-  // public static int leftMotor = 1;
-  // public static int rightMotor = 2;
-
-  // If you are using multiple modules, make sure to define both the port
-  // number and the module. For example you with a rangefinder:
-  // public static int rangefinderPort = 1;
-  // public static int rangefinderModule = 1;
-
   public final static int MOTOR_DT_FRONT_LEFT = 2;
   public final static int MOTOR_DT_FRONT_RIGHT = 3;
   public final static int MOTOR_DT_BACK_LEFT = 4;
@@ -41,28 +31,28 @@ public class RobotMap {
   public final static int COMPRESSOR = 6;
 
   //forward solenoid channel to extend hatch grabber pistons
-  public final static int DISPENSER_EXTEND = 0;
+  public final static int DISPENSER_EXTEND = 2;
 
   //reverse solenoid channel to extend hatch grabber pistons
-  public final static int DISPENSER_RETRACT = 1;
+  public final static int DISPENSER_RETRACT = 3;
 
   //forward solenoid channel to extend top velcro pad
-  public final static int VELCRO_EXTEND = 2;
+  public final static int VELCRO_EXTEND = 0;
 
   //reverse solenoid channel to retract top velcro pad
-  public final static int VELCRO_RETRACT = 3;
+  public final static int VELCRO_RETRACT = 1;
 
   //forward solenoid channel for climber pistons to latch onto 3rd level
-  public final static int CLIMBER_PISTON_LATCH = 6;
+  public final static int CLIMBER_PISTON_LATCH = 4;
 
   //reverse solenoid channel for climber pistons to release from 3rd level
-  public final static int CLIMBER_PISTON_RELEASE = 7;
+  public final static int CLIMBER_PISTON_RELEASE = 5;
 
   //forward solenoid channel for hatch grabber pivot pistons
-  public final static int PIVOT_PISTON_EXTEND = 4;
+  public final static int PIVOT_PISTON_EXTEND = 6;
 
   //reverse solenoid channel for hatch grabber pivot pistons
-  public final static int PIVOT_PISTON_RETRACT = 5;
+  public final static int PIVOT_PISTON_RETRACT = 7;
 
   //motor channel for Climber wench
   public final static int CLIMBER_WENCH = 5;

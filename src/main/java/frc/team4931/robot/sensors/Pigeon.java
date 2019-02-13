@@ -33,6 +33,15 @@ public class Pigeon {
     return (out > 180) ? out - 360 : out;
   }
 
+  /**
+   * Gets the current angle of the Pigeon IMU (Robot).
+   *
+   * @return angle -inf to +inf.
+   */
+  public double getAngleContinious() {
+    return  -pigeon.getFusedHeading();
+  }
+
   public void reset() {
     pigeon.setFusedHeading(0);
   }

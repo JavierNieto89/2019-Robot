@@ -13,7 +13,7 @@ public class LineupWithTarget extends Command {
   private static final double ANGLE_CORRECTION = 0.5; // AKA Max speed
   private static final double OFFSET_CORRECTION = 0.5; // AKA speed per foot
   private static final double DISTANCE_CORRECTION = 0.3; // AKA speed per foot
-  private static final double MAX_SPEED = 0.3;
+  private static final double SCALE_SPEED = 0.3; // AKA what to multiply the speed by
   private Drivetrain drivetrain;
   private Pigeon pigeon;
   private boolean finished;
@@ -86,9 +86,9 @@ public class LineupWithTarget extends Command {
     if (Math.abs(deltaTarget) < 3 && Math.abs(curOffset) < 0.15 && Math.abs(curDistance) < 0.15)
       finished = true;
 
-    angleCorrection = range(angleCorrection) * MAX_SPEED;
-    offsetCorrection = range(offsetCorrection) * MAX_SPEED;
-    distanceCorrection = range(distanceCorrection) * MAX_SPEED;
+    angleCorrection = range(angleCorrection) * SCALE_SPEED;
+    offsetCorrection = range(offsetCorrection) * SCALE_SPEED;
+    distanceCorrection = range(distanceCorrection) * SCALE_SPEED;
 
     drivetrain.driveCartesian(distanceCorrection, offsetCorrection, angleCorrection);
   }
