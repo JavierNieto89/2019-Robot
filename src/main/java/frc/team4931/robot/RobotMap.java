@@ -30,31 +30,41 @@ public class RobotMap {
 
   public final static int COMPRESSOR = 6;
 
-  //forward solenoid channel to extend hatch grabber pistons
+  // forward solenoid channel to extend hatch grabber pistons
   public final static int DISPENSER_EXTEND = 2;
 
-  //reverse solenoid channel to extend hatch grabber pistons
+  // reverse solenoid channel to extend hatch grabber pistons
   public final static int DISPENSER_RETRACT = 3;
 
-  //forward solenoid channel to extend top velcro pad
+  // forward solenoid channel to extend top velcro pad
   public final static int VELCRO_EXTEND = 0;
 
-  //reverse solenoid channel to retract top velcro pad
+  // reverse solenoid channel to retract top velcro pad
   public final static int VELCRO_RETRACT = 1;
 
-  //forward solenoid channel for climber pistons to latch onto 3rd level
+  // forward solenoid channel for climber pistons to latch onto 3rd level
   public final static int CLIMBER_PISTON_LATCH = 4;
 
-  //reverse solenoid channel for climber pistons to release from 3rd level
+  // reverse solenoid channel for climber pistons to release from 3rd level
   public final static int CLIMBER_PISTON_RELEASE = 5;
 
-  //forward solenoid channel for hatch grabber pivot pistons
+  // forward solenoid channel for hatch grabber pivot pistons
   public final static int PIVOT_PISTON_EXTEND = 6;
 
-  //reverse solenoid channel for hatch grabber pivot pistons
+  // reverse solenoid channel for hatch grabber pivot pistons
   public final static int PIVOT_PISTON_RETRACT = 7;
 
-  //motor channel for Climber wench
+  // motor channel for Climber wench
   public final static int CLIMBER_WENCH = 5;
 
+  public final static int CAMERA = 0;
+
+  public final static int CAMERA_WIDTH = 640;
+  public final static int CAMERA_HEIGHT = 360;
+
+  public final static int CAMERA_UI_TOGGLE = -1;
+
+  public final static int CAMERA_UI_LOCATION_HEIGHT = 100;
+  public final static int CAMERA_UI_WIDTH = 100;
+  public final static int CAMERA_UI_HEIGHT = 50;
 }
