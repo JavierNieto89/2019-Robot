@@ -10,10 +10,12 @@ public class RetractVelcro extends Command {
         requires(Robot.getHatchGrabber());
     }
 
+    @Override
     protected void initialize() {
         Robot.getHatchGrabber().retractVelcro();
     }
 
+    @Override
     protected boolean isFinished() {
         return true;
     }
