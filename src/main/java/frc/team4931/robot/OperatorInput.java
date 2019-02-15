@@ -42,19 +42,19 @@ public class OperatorInput {
     Button pivotReset = new JoystickButton(joystick, 10);
     pivotReset.whenPressed(new PivotUp());
 
-    Button unwindWench = new POVButton(joystick, 0);
-    unwindWench.whileHeld(new ExtendClimberArm());
+    Button unwindWench = new JoystickButton(joystick, 5);
+    unwindWench.whenPressed(new ExtendClimberArm());
     unwindWench.whenReleased(new ArmStop());
 
-    Button windWench = new POVButton(joystick, 180);
-    windWench.whileHeld(new RetractClimberArm());
+    Button windWench = new JoystickButton(joystick, 3);
+    windWench.whenPressed(new RetractClimberArm());
     windWench.whenReleased(new ArmStop());
 
-    Button latch = new JoystickButton(joystick, 3);
-    latch.whenPressed(new Latch());
+    Button climberLatch = new JoystickButton(joystick, 4);
+    climberLatch.whenPressed(new Latch());
 
-    Button release = new JoystickButton(joystick, 4);
-    release.whenPressed(new Release());
+    Button climberRelease = new JoystickButton(joystick, 6);
+    climberRelease.whenPressed(new Release());
 
     Button getHatch = new JoystickButton(joystick, 11);
     getHatch.whenPressed(new GetHatchAuto());

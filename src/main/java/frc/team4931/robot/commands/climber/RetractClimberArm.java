@@ -9,10 +9,17 @@ public class RetractClimberArm extends Command {
         requires(Robot.getClimber());
     }
 
+    @Override
     protected void initialize() {
         Robot.getClimber().retractClimberArm();
     }
 
+    @Override
+    protected void end() {
+        //Robot.getClimber().armStop();
+    }
+
+    @Override
     protected boolean isFinished() {
         return true;
     }

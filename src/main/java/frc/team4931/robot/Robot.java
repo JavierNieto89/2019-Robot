@@ -48,7 +48,7 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     drivetrain = new Drivetrain();
 
-    pigeon = new Pigeon(drivetrain.getMotor(DriveMotors.BACK_LEFT));
+    pigeon = new Pigeon(drivetrain.getMotor(RobotMap.PIGEON_IMU));
     pigeon.reset();
 
     hatchGrabber = new HatchGrabber();
@@ -62,6 +62,8 @@ public class Robot extends TimedRobot {
     operatorInput = new OperatorInput();
 
     SmartDashboard.putData(drivetrain);
+
+    SmartDashboard.putBoolean("Reset Compass", false);
   }
 
   /**
@@ -113,7 +115,7 @@ public class Robot extends TimedRobot {
   }
 
   private void log() {
-    SmartDashboard.putNumber("Gyro Angle", pigeon.getAngle());
+    pigeon.log();
     hatchGrabber.log();
     drivetrain.log();
     climber.log();
