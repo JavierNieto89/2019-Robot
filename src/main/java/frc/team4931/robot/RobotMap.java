@@ -24,7 +24,7 @@ public class RobotMap {
   /**
    * Talon SRX port that the talon is attached to
    */
-  public final static DriveMotors PIGEON_IMU = DriveMotors.BACK_LEFT;
+  public final static DriveMotors PIGEON_IMU = DriveMotors.FRONT_RIGHT;
 
   public final static int JOYSTICK = 0;
 
