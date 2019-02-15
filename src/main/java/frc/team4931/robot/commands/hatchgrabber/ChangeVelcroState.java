@@ -9,10 +9,12 @@ public class ChangeVelcroState extends Command {
         requires(Robot.getHatchGrabber());
     }
 
+    @Override
     protected void initialize() {
         Robot.getHatchGrabber().changeVelcroState();
     }
 
+    @Override
     protected boolean isFinished() {
         return true;
     }

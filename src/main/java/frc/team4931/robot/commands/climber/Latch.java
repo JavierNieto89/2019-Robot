@@ -9,10 +9,12 @@ public class Latch extends Command {
         requires(Robot.getClimber());
     }
 
+    @Override
     public void initialize() {
         Robot.getClimber().latch();
     }
 
+    @Override
     public boolean isFinished() {
         return true;
     }
