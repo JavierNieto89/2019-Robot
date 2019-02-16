@@ -21,9 +21,12 @@ public class Camera {
   private UsbCamera camera;
   private CvSink source;
   private Mat frame;
-  private Button toggleUI;
+  private Button toggleUIButton;
 
-  private Thread driveCameraThread;
+  private RotatedRect uiRotatedRect;
+  private Scalar uiScaler;
+
+  private Thread captureThread;
 
   public Camera() {
     camera = CameraServer.getInstance().startAutomaticCapture(RobotMap.CAMERA);
@@ -34,22 +37,23 @@ public class Camera {
         RobotMap.CAMERA_HEIGHT);
     frame = new Mat();
 
-    toggleUI = new JoystickButton(Robot.getOperatorInput().getJoystick(), RobotMap.CAMERA_UI_TOGGLE);
+    uiRotatedRect = new RotatedRect(new Point(RobotMap.CAMERA_WIDTH / 2, RobotMap.CAMERA_UI_LOCATION_HEIGHT),
+        new Size(RobotMap.CAMERA_UI_WIDTH, RobotMap.CAMERA_UI_HEIGHT), 0);
+    uiScaler = new Scalar(0, 0, 255);
 
-    driveCameraThread = new Thread(() -> {
+    toggleUIButton = new JoystickButton(Robot.getOperatorInput().getJoystick(), RobotMap.CAMERA_UI_TOGGLE);
+
+    captureThread = new Thread(() -> {
       while (!Thread.interrupted()) {
         source.grabFrame(frame);
 
-        if (toggleUI.get())
-          Imgproc.ellipse(frame,
-              new RotatedRect(new Point(RobotMap.CAMERA_WIDTH / 2, RobotMap.CAMERA_UI_LOCATION_HEIGHT),
-                  new Size(RobotMap.CAMERA_UI_WIDTH, RobotMap.CAMERA_UI_HEIGHT), 0),
-              new Scalar(0, 0, 255), 10);
+        if (toggleUIButton.get())
+          Imgproc.ellipse(frame, uiRotatedRect, uiScaler, RobotMap.CAMERA_UI_LINE_WIDTH);
 
         outputStream.putFrame(frame);
       }
     });
 
-    driveCameraThread.start();
+    captureThread.start();
   }
 }

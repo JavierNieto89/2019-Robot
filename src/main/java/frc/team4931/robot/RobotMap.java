@@ -57,14 +57,21 @@ public class RobotMap {
   // motor channel for Climber wench
   public final static int CLIMBER_WENCH = 5;
 
+  // The USB port the camera is connected to
   public final static int CAMERA = 0;
 
+  // The width and height of the camera output feed
   public final static int CAMERA_WIDTH = 640;
-  public final static int CAMERA_HEIGHT = 360;
+  public final static int CAMERA_HEIGHT = 480;
 
-  public final static int CAMERA_UI_TOGGLE = -1;
+  // Camera toggle UI visibility
+  public final static int CAMERA_UI_TOGGLE = -1; // FIXME Remap
 
-  public final static int CAMERA_UI_LOCATION_HEIGHT = 100;
-  public final static int CAMERA_UI_WIDTH = 100;
-  public final static int CAMERA_UI_HEIGHT = 50;
+  public final static int CAMERA_UI_LOCATION_HEIGHT = 100; // The Y value of the eclipse on the screen. The X value is
+                                                           // the camera width / 2.
+  public final static int CAMERA_UI_WIDTH = 100; // Eclipse height
+  public final static int CAMERA_UI_HEIGHT = 50; // Eclipse width
+
+  // The width of the outline for the eclipse
+  public final static int CAMERA_UI_LINE_WIDTH = 10;
 }
