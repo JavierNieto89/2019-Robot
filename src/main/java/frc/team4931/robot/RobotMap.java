@@ -54,7 +54,8 @@ public class RobotMap {
   //reverse solenoid channel for hatch grabber pivot pistons
   public final static int PIVOT_PISTON_RETRACT = 7;
 
-  //motor channel for Climber wench
-  public final static int CLIMBER_WENCH = 5;
+  //motor channels for Climber wench
+  public final static int CLIMBER_WENCH_1 = 5;
+  public final static int CLIMBER_WENCH_2 = 6;
 
 }
