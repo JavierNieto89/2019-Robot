@@ -12,7 +12,6 @@ import frc.team4931.robot.Robot;
 import frc.team4931.robot.enums.Angles;
 import frc.team4931.robot.sensors.Pigeon;
 import frc.team4931.robot.subsystems.Drivetrain;
-import java.util.HashMap;
 
 public class RotateToDegree extends Command {
 
@@ -75,13 +74,13 @@ public class RotateToDegree extends Command {
 
   @Override
   protected void initialize() {
-    startingAngle = pigeon.getAngleContinious();
+    startingAngle = pigeon.getAngleContinuous();
     targetDegree = getClosestAngle(startingAngle);
   }
 
   @Override
   protected void execute() {
-    currentAngle = pigeon.getAngleContinious();
+    currentAngle = pigeon.getAngleContinuous();
     double speed = Math.copySign(ramp(currentAngle), targetDegree - startingAngle);
 
     drivetrain.driveCartesian(0, 0, speed);

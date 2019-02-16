@@ -9,10 +9,12 @@ public class PivotUp extends Command {
         requires(Robot.getHatchGrabber());
     }
 
+    @Override
     protected void initialize() {
         Robot.getHatchGrabber().pivotUp();
     }
 
+    @Override
     protected boolean isFinished() {
         return true;
     }

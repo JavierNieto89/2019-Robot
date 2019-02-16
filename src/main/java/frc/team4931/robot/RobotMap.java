@@ -24,23 +24,23 @@ public class RobotMap {
   /**
    * Talon SRX port that the talon is attached to
    */
-  public final static DriveMotors PIGEON_IMU = DriveMotors.BACK_LEFT;
+  public final static DriveMotors PIGEON_IMU = DriveMotors.FRONT_RIGHT;
 
   public final static int JOYSTICK = 0;
 
   public final static int COMPRESSOR = 6;
 
   // forward solenoid channel to extend hatch grabber pistons
-  public final static int DISPENSER_EXTEND = 2;
+  public final static int DISPENSER_EXTEND = 0;
 
   // reverse solenoid channel to extend hatch grabber pistons
-  public final static int DISPENSER_RETRACT = 3;
+  public final static int DISPENSER_RETRACT = 1;
 
   // forward solenoid channel to extend top velcro pad
-  public final static int VELCRO_EXTEND = 0;
+  public final static int VELCRO_EXTEND = 2;
 
   // reverse solenoid channel to retract top velcro pad
-  public final static int VELCRO_RETRACT = 1;
+  public final static int VELCRO_RETRACT = 3;
 
   // forward solenoid channel for climber pistons to latch onto 3rd level
   public final static int CLIMBER_PISTON_LATCH = 4;
@@ -54,8 +54,9 @@ public class RobotMap {
   // reverse solenoid channel for hatch grabber pivot pistons
   public final static int PIVOT_PISTON_RETRACT = 7;
 
-  // motor channel for Climber wench
-  public final static int CLIMBER_WENCH = 5;
+  // motor channels for Climber wench
+  public final static int CLIMBER_WENCH_1 = 5;
+  public final static int CLIMBER_WENCH_2 = 6;
 
   // The USB port the camera is connected to
   public final static int CAMERA = 0;

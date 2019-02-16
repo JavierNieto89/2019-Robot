@@ -10,10 +10,12 @@ public class ExtendVelcro extends Command {
         requires(Robot.getHatchGrabber());
     }
 
+    @Override
     protected void initialize() {
         Robot.getHatchGrabber().extendVelcro();
     }
 
+    @Override
     protected boolean isFinished() {
         return true;
     }

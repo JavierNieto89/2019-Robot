@@ -15,6 +15,11 @@ public class ExtendClimberArm extends Command {
     }
 
     @Override
+    protected void end() {
+        //Robot.getClimber().armStop();
+    }
+
+    @Override
     protected boolean isFinished() {
         return true;
     }

@@ -9,10 +9,12 @@ public class ArmStop extends Command {
         requires(Robot.getClimber());
     }
 
+    @Override
     protected void initialize() {
         Robot.getClimber().armStop();
     }
 
+    @Override
     protected boolean isFinished() {
         return true;
     }
