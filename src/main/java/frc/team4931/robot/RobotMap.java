@@ -26,7 +26,8 @@ public class RobotMap {
    */
   public final static DriveMotors PIGEON_IMU = DriveMotors.FRONT_RIGHT;
 
-  public final static int JOYSTICK = 0;
+  public final static int JOYSTICK1 = 0;
+  public static final int JOYSTICK2 = 1;
 
   public final static int COMPRESSOR = 6;
 
