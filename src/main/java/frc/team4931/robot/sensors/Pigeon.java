@@ -10,9 +10,8 @@ package frc.team4931.robot.sensors;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.sensors.PigeonIMU;
 import com.ctre.phoenix.sensors.PigeonIMU.CalibrationMode;
+import com.ctre.phoenix.sensors.PigeonIMU.GeneralStatus;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.team4931.robot.Robot;
-import frc.team4931.robot.RobotMap;
 
 public class Pigeon {
 
@@ -22,6 +21,7 @@ public class Pigeon {
     pigeon = new PigeonIMU(motor);
 
     pigeon.configFactoryDefault();
+    pigeon.enterCalibrationMode(CalibrationMode.Magnetometer12Pt); // FIXME REMOVE THIS LINE!!!
   }
 
   /**
@@ -44,7 +44,12 @@ public class Pigeon {
   }
 
   public void resetCompass() {
-    pigeon.setCompassAngle(0);
+  }
+
+  public GeneralStatus getGeneralStatus() {
+    GeneralStatus status = new GeneralStatus();
+    pigeon.getGeneralStatus(status);
+    return status;
   }
 
   /**
@@ -64,6 +69,10 @@ public class Pigeon {
     SmartDashboard.putNumber("Angle", getAngle());
     SmartDashboard.putNumber("Compass Angle Absolute", getAbsoluteCompassHeading());
     SmartDashboard.putNumber("Compass Angle", getCompassHeading());
+
+    var stat = getGeneralStatus();
+    SmartDashboard.putNumber("Compass Angle", stat.calibrationError);
+    SmartDashboard.putBoolean("Compass Angle", stat.bCalIsBooting);
 
     if (SmartDashboard.getBoolean("Reset Compass", false)) {
       resetCompass();
