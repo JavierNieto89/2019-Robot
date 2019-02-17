@@ -19,51 +19,53 @@ import frc.team4931.robot.commands.autonomous.*;
  */
 public class OperatorInput {
 
-  private Joystick joystick;
+  private Joystick joystick1;
+  private Joystick joystick2;
 
   public OperatorInput() {
-    joystick = new Joystick(RobotMap.JOYSTICK);
+    joystick1 = new Joystick(RobotMap.JOYSTICK1);
+    joystick2 = new Joystick(RobotMap.JOYSTICK2);
 
-    Button shoot = new JoystickButton(joystick, 1);
+    Button shoot = new JoystickButton(joystick1, 1);
     shoot.whenPressed(new ShootHatch());
 
-    Button changeVelcro = new JoystickButton(joystick, 2);
+    Button changeVelcro = new JoystickButton(joystick1, 2);
     changeVelcro.whenPressed(new ChangeVelcroState());
 
-    Button bamBam = new JoystickButton(joystick, 7);
+    Button bamBam = new JoystickButton(joystick1, 7);
     bamBam.whenPressed(new ExtendHatchGrabber());
 
-    Button retract = new JoystickButton(joystick, 8);
+    Button retract = new JoystickButton(joystick1, 8);
     retract.whenPressed(new ResetHatchGrabber());
 
-    Button pivotDown = new JoystickButton(joystick, 9);
+    Button pivotDown = new JoystickButton(joystick1, 9);
     pivotDown.whenPressed(new PivotDown());
 
-    Button pivotReset = new JoystickButton(joystick, 10);
+    Button pivotReset = new JoystickButton(joystick1, 10);
     pivotReset.whenPressed(new PivotUp());
 
-    Button unwindWench = new JoystickButton(joystick, 5);
+    Button unwindWench = new JoystickButton(joystick1, 5);
     unwindWench.whenPressed(new ExtendClimberArm());
     unwindWench.whenReleased(new ArmStop());
 
-    Button windWench = new JoystickButton(joystick, 3);
+    Button windWench = new JoystickButton(joystick1, 3);
     windWench.whenPressed(new RetractClimberArm());
     windWench.whenReleased(new ArmStop());
 
-    Button climberLatch = new JoystickButton(joystick, 4);
+    Button climberLatch = new JoystickButton(joystick1, 4);
     climberLatch.whenPressed(new Latch());
 
-    Button climberRelease = new JoystickButton(joystick, 6);
+    Button climberRelease = new JoystickButton(joystick1, 6);
     climberRelease.whenPressed(new Release());
 
-    Button getHatch = new JoystickButton(joystick, 11);
+    Button getHatch = new JoystickButton(joystick1, 11);
     getHatch.whenPressed(new GetHatchAuto());
 
-    Button placeHatch = new JoystickButton(joystick, 12);
+    Button placeHatch = new JoystickButton(joystick1, 12);
     placeHatch.whenPressed(new PlaceHatchAuto());
   }
 
   public Joystick getJoystick() {
-    return joystick;
+    return joystick1;
   }
 }
