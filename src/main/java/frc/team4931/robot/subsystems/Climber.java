@@ -53,6 +53,10 @@ public class Climber extends Subsystem {
     pneumatics.set(Value.kReverse);
   }
 
+  public void tightenWenchMotor1() {wenchMotor1.set(-.1);}
+
+  public void tightenWenchMotor2() {wenchMotor2.set(-.1);}
+
   public void log() {
     SmartDashboard.putNumber("Wench Motor 1 Speed", wenchMotor1.get());
     SmartDashboard.putNumber("Wench Motor 2 Speed", -(wenchMotor2.get()));
