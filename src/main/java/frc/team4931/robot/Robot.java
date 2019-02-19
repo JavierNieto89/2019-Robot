@@ -7,13 +7,13 @@
 
 package frc.team4931.robot;
 
-import com.ctre.phoenix.sensors.PigeonIMU;
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Compressor;
 import frc.team4931.robot.commands.lineup.LineupWithTarget;
-import frc.team4931.robot.enums.DriveMotors;
+import frc.team4931.robot.sensors.Camera;
 import frc.team4931.robot.sensors.Pigeon;
 import frc.team4931.robot.subsystems.Climber;
 import frc.team4931.robot.subsystems.Drivetrain;
@@ -39,6 +39,10 @@ public class Robot extends TimedRobot {
   private static Climber climber;
 
   private static Compressor compressor;
+
+  private static Camera camera;
+
+  private AnalogInput pressure;
   
   /**
    * This function is run when the robot is first started up and should be used
@@ -60,6 +64,10 @@ public class Robot extends TimedRobot {
     compressor.start();
 
     operatorInput = new OperatorInput();
+
+    //camera = new Camera();
+
+    pressure = new AnalogInput(RobotMap.PRESSURE);
 
     SmartDashboard.putData(drivetrain);
 
@@ -119,5 +127,7 @@ public class Robot extends TimedRobot {
     hatchGrabber.log();
     drivetrain.log();
     climber.log();
+
+    SmartDashboard.putNumber("Pressure", pressure.getValue());
   }
 }

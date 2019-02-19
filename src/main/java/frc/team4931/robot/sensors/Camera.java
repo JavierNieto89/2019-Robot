@@ -17,6 +17,7 @@ import frc.team4931.robot.Robot;
 import frc.team4931.robot.RobotMap;
 
 public class Camera {
+  private static final boolean LOAD_EVERY_LOOP = true;
 
   private UsbCamera camera;
   private CvSink source;
@@ -37,15 +38,25 @@ public class Camera {
         RobotMap.CAMERA_HEIGHT);
     frame = new Mat();
 
-    uiRotatedRect = new RotatedRect(new Point(RobotMap.CAMERA_WIDTH / 2, RobotMap.CAMERA_UI_LOCATION_HEIGHT),
-        new Size(RobotMap.CAMERA_UI_WIDTH, RobotMap.CAMERA_UI_HEIGHT), 0);
-    uiScaler = new Scalar(0, 0, 255);
+    if (!LOAD_EVERY_LOOP) {
+      uiRotatedRect = new RotatedRect(
+          new Point(RobotMap.CAMERA_WIDTH / 2.0, RobotMap.CAMERA_UI_LOCATION_HEIGHT),
+          new Size(RobotMap.CAMERA_UI_WIDTH, RobotMap.CAMERA_UI_HEIGHT), 0);
+      uiScaler = new Scalar(0, 0, 255);
+    }
 
     toggleUIButton = new JoystickButton(Robot.getOperatorInput().getJoystick(), RobotMap.CAMERA_UI_TOGGLE);
 
     captureThread = new Thread(() -> {
       while (!Thread.interrupted()) {
         source.grabFrame(frame);
+
+        if (LOAD_EVERY_LOOP) {
+          uiRotatedRect = new RotatedRect(
+              new Point(RobotMap.CAMERA_WIDTH / 2.0, RobotMap.CAMERA_UI_LOCATION_HEIGHT),
+              new Size(RobotMap.CAMERA_UI_WIDTH, RobotMap.CAMERA_UI_HEIGHT), 0);
+          uiScaler = new Scalar(0, 0, 255);
+        }
 
         if (toggleUIButton.get())
           Imgproc.ellipse(frame, uiRotatedRect, uiScaler, RobotMap.CAMERA_UI_LINE_WIDTH);

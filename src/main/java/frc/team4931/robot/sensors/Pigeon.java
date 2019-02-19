@@ -21,7 +21,7 @@ public class Pigeon {
     pigeon = new PigeonIMU(motor);
 
     pigeon.configFactoryDefault();
-    pigeon.enterCalibrationMode(CalibrationMode.Magnetometer12Pt); // FIXME REMOVE THIS LINE!!!
+    //pigeon.enterCalibrationMode(CalibrationMode.Magnetometer12Pt); // FIXME REMOVE THIS LINE!!!
   }
 
   /**
