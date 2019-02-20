@@ -68,4 +68,8 @@ public class OperatorInput {
   public Joystick getJoystick() {
     return joystick1;
   }
+
+  public Joystick getJoystick2() {
+    return joystick2;
+  }
 }

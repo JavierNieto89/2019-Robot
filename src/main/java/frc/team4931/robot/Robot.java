@@ -65,7 +65,7 @@ public class Robot extends TimedRobot {
 
     operatorInput = new OperatorInput();
 
-    //camera = new Camera();
+    camera = new Camera();
 
     pressure = new AnalogInput(RobotMap.PRESSURE);
 
