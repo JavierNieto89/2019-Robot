@@ -19,7 +19,7 @@ public class GetHatchAuto extends CommandGroup {
     addParallel(new ExtendVelcro());
     addParallel(new ResetHatchGrabber());
 
-    addSequential(new DriveForward(0.15, 500));
+    addSequential(new DriveForward(0.30, 500));
 
     addSequential(new RetractVelcro());
   }

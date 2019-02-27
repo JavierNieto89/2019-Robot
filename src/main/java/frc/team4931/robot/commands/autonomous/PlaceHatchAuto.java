@@ -6,6 +6,7 @@ import frc.team4931.robot.Robot;
 import frc.team4931.robot.commands.hatchgrabber.ExtendVelcro;
 import frc.team4931.robot.commands.hatchgrabber.ShootHatch;
 import frc.team4931.robot.commands.lineup.LineupWithTarget;
+import frc.team4931.robot.commands.utilities.DriveForward;
 
 public class PlaceHatchAuto extends CommandGroup {
   public PlaceHatchAuto() {
@@ -13,6 +14,8 @@ public class PlaceHatchAuto extends CommandGroup {
 
     addSequential(new LineupWithTarget());
     addParallel(new ExtendVelcro());
+
+    addSequential(new DriveForward(0.30, 200));
 
     addSequential(new ShootHatch());
   }
