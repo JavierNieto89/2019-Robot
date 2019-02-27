@@ -52,6 +52,10 @@ public class Pigeon {
     return status;
   }
 
+  public double getAcceleration() {
+    return 0; //To be replaced with method made by Damian
+  }
+
   /**
    * Gets the current angle of the Pigeon IMU (Robot).
    *

@@ -20,15 +20,18 @@ public class LineupWithTarget extends Command {
   private boolean finished;
   private int targetAngle;
   private boolean useCurrentAngle = false;
+  private boolean autoUpdate = false;
 
-  public LineupWithTarget() {
+  public LineupWithTarget(boolean autoUpdate) {
+    this.autoUpdate = autoUpdate;
     drivetrain = Robot.getDrivetrain();
     useCurrentAngle = true;
     requires(drivetrain);
     setInterruptible(true);
   }
 
-  public LineupWithTarget(Angles angle) {
+  public LineupWithTarget(boolean autoUpdate, Angles angle) {
+    this.autoUpdate = autoUpdate;
     drivetrain = Robot.getDrivetrain();
 
     if (angle == Angles.NONE) {
@@ -81,8 +84,9 @@ public class LineupWithTarget extends Command {
     pigeon = Robot.getPigeon();
     finished = false;
 
-    if (useCurrentAngle)
-      targetAngle = getClosestAngle(pigeon.getAngle());
+    if (autoUpdate) updateTarget(Robot.getAngle());
+
+    if (useCurrentAngle) targetAngle = getClosestAngle(pigeon.getAngle());
   }
 
   @Override

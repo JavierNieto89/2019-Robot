@@ -12,7 +12,7 @@ public class PlaceHatchAuto extends CommandGroup {
   public PlaceHatchAuto() {
     setInterruptible(true);
 
-    addSequential(new LineupWithTarget());
+    addSequential(new LineupWithTarget(true));
     addParallel(new ExtendVelcro());
 
     addSequential(new DriveForward(0.30, 200));

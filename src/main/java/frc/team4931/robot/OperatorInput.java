@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.buttons.*;
 import frc.team4931.robot.commands.hatchgrabber.*;
 import frc.team4931.robot.commands.climber.*;
 import frc.team4931.robot.commands.autonomous.*;
+import frc.team4931.robot.commands.lineup.SetAutoAngle;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -63,6 +64,9 @@ public class OperatorInput {
 
     Button placeHatch = new JoystickButton(joystick1, 12);
     placeHatch.whenPressed(new PlaceHatchAuto());
+
+    Button setAutoAngle = new JoystickButton(joystick2, 2);
+    setAutoAngle.whenReleased(new SetAutoAngle());
   }
 
   public Joystick getJoystick() {
