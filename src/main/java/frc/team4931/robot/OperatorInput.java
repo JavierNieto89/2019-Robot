@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.buttons.*;
 import frc.team4931.robot.commands.hatchgrabber.*;
 import frc.team4931.robot.commands.climber.*;
 import frc.team4931.robot.commands.autonomous.*;
+import edu.wpi.first.wpilibj.command.*;
 
 /**
  * This class is the glue that binds the controls on the physical operator

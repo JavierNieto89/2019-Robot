@@ -11,6 +11,7 @@ import com.ctre.phoenix.sensors.PigeonIMU;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.Compressor;
 import frc.team4931.robot.commands.lineup.LineupWithTarget;
 import frc.team4931.robot.enums.DriveMotors;
@@ -39,6 +40,8 @@ public class Robot extends TimedRobot {
   private static Climber climber;
 
   private static Compressor compressor;
+
+  private static AnalogInput analogInput;
   
   /**
    * This function is run when the robot is first started up and should be used
@@ -60,6 +63,8 @@ public class Robot extends TimedRobot {
     compressor.start();
 
     operatorInput = new OperatorInput();
+
+    analogInput = new AnalogInput(0);
 
     SmartDashboard.putData(drivetrain);
 
@@ -115,6 +120,7 @@ public class Robot extends TimedRobot {
   }
 
   private void log() {
+    SmartDashboard.putNumber("Pressure", analogInput.getValue());
     pigeon.log();
     hatchGrabber.log();
     drivetrain.log();

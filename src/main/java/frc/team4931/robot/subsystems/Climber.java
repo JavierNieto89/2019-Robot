@@ -15,8 +15,7 @@ public class Climber extends Subsystem {
     //always set wenchMotor2 to the negative speed of wenchMotor1
     private WPI_TalonSRX wenchMotor2 = new WPI_TalonSRX(RobotMap.CLIMBER_WENCH_2);
 
-    private DoubleSolenoid pneumatics = new DoubleSolenoid(
-        RobotMap.COMPRESSOR, 
+    private DoubleSolenoid pneumatics = new DoubleSolenoid(RobotMap.COMPRESSOR, 
         RobotMap.CLIMBER_PISTON_LATCH, 
         RobotMap.CLIMBER_PISTON_RELEASE);
 
@@ -45,6 +44,10 @@ public class Climber extends Subsystem {
 
     public void release() {
         pneumatics.set(Value.kReverse);
+    }
+
+    public void pressureTest() {
+        pneumatics.set(Value.kOff);
     }
 
     public void log() {
