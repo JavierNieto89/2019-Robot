@@ -52,8 +52,6 @@ public class Robot extends TimedRobot {
 
   private static ClimberSafety climberSafety;
 
-  private static AnalogInput analogInput;
-
   /**
    * This function is run when the robot is first started up and should be used
    * for any initialization code.
@@ -74,8 +72,6 @@ public class Robot extends TimedRobot {
     compressor.start();
 
     operatorInput = new OperatorInput();
-
-    analogInput = new AnalogInput(0);
 
     camera = new Camera();
 
@@ -140,7 +136,7 @@ public class Robot extends TimedRobot {
     compressor.start();
   }
 
-  public void disablesInit() {
+  public void disabledInit() {
     compressor.stop();
   }
 

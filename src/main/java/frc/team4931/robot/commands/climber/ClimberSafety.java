@@ -20,7 +20,7 @@ public class ClimberSafety extends Command {
 
   @Override
   protected void execute() {
-    double acc = pigeon.getAcceleration();
+    double acc = pigeon.getTiltAcceleration();
 
     if (acc < -THRESHOLD)
       climber.latch();

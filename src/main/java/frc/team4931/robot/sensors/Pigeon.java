@@ -9,7 +9,6 @@ package frc.team4931.robot.sensors;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.sensors.PigeonIMU;
-import com.ctre.phoenix.sensors.PigeonIMU.CalibrationMode;
 import com.ctre.phoenix.sensors.PigeonIMU.GeneralStatus;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -50,10 +49,6 @@ public class Pigeon {
     GeneralStatus status = new GeneralStatus();
     pigeon.getGeneralStatus(status);
     return status;
-  }
-
-  public double getAcceleration() {
-    return 0; //To be replaced with method made by Damian
   }
 
   /**
