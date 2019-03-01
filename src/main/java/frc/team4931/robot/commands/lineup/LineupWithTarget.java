@@ -102,8 +102,8 @@ public class LineupWithTarget extends Command {
 
     // Calculate correction values
     double angleCorrection = -deltaTarget / 30 * ANGLE_CORRECTION;
-    double offsetCorrection = (1 - Math.pow(Math.max(range(angleCorrection), 0), 2)) * curOffset * OFFSET_CORRECTION;
-    double distanceCorrection = (1 -Math.pow(Math.max(range(offsetCorrection), 0), 2)) * curDistance * DISTANCE_CORRECTION;
+    double offsetCorrection = (1 - Math.pow(range(angleCorrection), 2)) * curOffset * OFFSET_CORRECTION;
+    double distanceCorrection = (1 -Math.pow(range(offsetCorrection), 2)) * curDistance * DISTANCE_CORRECTION;
 
     if (Math.abs(deltaTarget) < 3 && Math.abs(curOffset) < 0.15 && Math.abs(curDistance) < 0.15)
       finished = true;
