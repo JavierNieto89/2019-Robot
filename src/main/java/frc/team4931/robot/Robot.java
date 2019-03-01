@@ -7,14 +7,17 @@
 
 package frc.team4931.robot;
 
-import com.ctre.phoenix.sensors.PigeonIMU;
+import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.Compressor;
+import frc.team4931.robot.commands.climber.ClimberSafety;
 import frc.team4931.robot.commands.lineup.LineupWithTarget;
-import frc.team4931.robot.enums.DriveMotors;
+import frc.team4931.robot.enums.Angles;
+import frc.team4931.robot.sensors.Camera;
 import frc.team4931.robot.sensors.Pigeon;
 import frc.team4931.robot.subsystems.Climber;
 import frc.team4931.robot.subsystems.Drivetrain;
@@ -41,8 +44,14 @@ public class Robot extends TimedRobot {
 
   private static Compressor compressor;
 
-  private static AnalogInput analogInput;
-  
+  private static Camera camera;
+
+  private AnalogInput pressure;
+
+  private static Angles angle = Angles.NONE;
+
+  private static ClimberSafety climberSafety;
+
   /**
    * This function is run when the robot is first started up and should be used
    * for any initialization code.
@@ -64,7 +73,11 @@ public class Robot extends TimedRobot {
 
     operatorInput = new OperatorInput();
 
-    analogInput = new AnalogInput(0);
+    camera = new Camera();
+
+    pressure = new AnalogInput(RobotMap.PRESSURE);
+
+    climberSafety = new ClimberSafety();
 
     SmartDashboard.putData(drivetrain);
 
@@ -82,20 +95,48 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    Angles tempAngle = calculateAngle();
+    if (tempAngle != Angles.NONE)
+      angle = tempAngle;
+
     Scheduler.getInstance().run();
     log();
   }
 
+  private Angles calculateAngle() {
+    int pov = operatorInput.getJoystick().getPOV();
+
+    switch (pov) {
+      case 0:
+        return Angles.FORWARD;
+      case 45:
+        return Angles.FORWARD_RIGHT;
+      case 90:
+        return Angles.RIGHT;
+      case 135:
+        return Angles.BACKWARD_RIGHT;
+      case 180:
+        return Angles.BACKWARD;
+      case 225:
+        return Angles.BACKWARD_LEFT;
+      case 270:
+        return Angles.LEFT;
+      case 315:
+        return Angles.FORWARD_LEFT;
+    }
+    return Angles.NONE;
+  }
+
   @Override
   public void autonomousInit() {
-    new LineupWithTarget().start();
+    //new LineupWithTarget().start();
   }
 
   public void teleopInit() {
     compressor.start();
   }
 
-  public void disablesInit() {
+  public void disabledInit() {
     compressor.stop();
   }
 
@@ -119,11 +160,25 @@ public class Robot extends TimedRobot {
     return climber;
   }
 
+  public static Angles getAngle() {
+   return angle;
+  }
+
+  public static void setAutoAngle() {
+    angle = Angles.NONE;
+  }
+
+  public static void startClimberSafety() {
+    if (climberSafety != null && !climberSafety.isRunning())
+      climberSafety.start();
+  }
+
   private void log() {
-    SmartDashboard.putNumber("Pressure", analogInput.getValue());
     pigeon.log();
     hatchGrabber.log();
     drivetrain.log();
     climber.log();
+
+    SmartDashboard.putNumber("Pressure", pressure.getValue());
   }
 }

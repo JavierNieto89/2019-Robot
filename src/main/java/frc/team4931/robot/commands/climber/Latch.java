@@ -12,6 +12,7 @@ public class Latch extends Command {
     @Override
     public void initialize() {
         Robot.getClimber().latch();
+        Robot.startClimberSafety();
     }
 
     @Override

@@ -16,7 +16,7 @@ public class DriveTeleoperated extends Command {
 
   private Joystick joystick;
   private Drivetrain drivetrain;
-  private static final double DEAD_ZONE = 0.1;
+  private static final double DEAD_ZONE = 0.15;
 
   public DriveTeleoperated() {
     requires(Robot.getDrivetrain());
