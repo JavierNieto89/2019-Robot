@@ -64,6 +64,12 @@ public class HatchGrabber extends Subsystem {
         pneumaticPivot.set(Value.kReverse);
     }
 
+    public void pressureTest() {
+        pneumaticDispenser.set(Value.kOff);
+        pneumaticPivot.set(Value.kOff);
+        pneumaticVelcro.set(Value.kOff);
+    }
+
     public void log() {
         SmartDashboard.putBoolean("Velcro Extended", 
                 pneumaticVelcro.get() == Value.kForward ? true : false);

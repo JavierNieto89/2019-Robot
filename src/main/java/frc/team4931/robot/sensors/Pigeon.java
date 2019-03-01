@@ -62,7 +62,13 @@ public class Pigeon {
    * @return angle -inf to +inf.
    */
   public double getAngleContinuous() {
-    return  -pigeon.getFusedHeading();
+    return -pigeon.getFusedHeading();
+  }
+
+  public double getTiltAcceleration() {
+    double[] rawGyroData = new double[3];
+    pigeon.getRawGyro(rawGyroData);
+    return rawGyroData[0];
   }
 
   public void reset() {

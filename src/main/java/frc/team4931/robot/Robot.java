@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.Compressor;
 import frc.team4931.robot.commands.climber.ClimberSafety;
 import frc.team4931.robot.commands.lineup.LineupWithTarget;
@@ -50,7 +51,9 @@ public class Robot extends TimedRobot {
   private static Angles angle = Angles.NONE;
 
   private static ClimberSafety climberSafety;
-  
+
+  private static AnalogInput analogInput;
+
   /**
    * This function is run when the robot is first started up and should be used
    * for any initialization code.
@@ -71,6 +74,8 @@ public class Robot extends TimedRobot {
     compressor.start();
 
     operatorInput = new OperatorInput();
+
+    analogInput = new AnalogInput(0);
 
     camera = new Camera();
 
