@@ -81,7 +81,7 @@ public class Robot extends TimedRobot {
 
     SmartDashboard.putData(drivetrain);
 
-    SmartDashboard.putBoolean("Reset Compass", false);
+    SmartDashboard.putBoolean("Reset Gyro", false);
   }
 
   /**
@@ -179,6 +179,6 @@ public class Robot extends TimedRobot {
     drivetrain.log();
     climber.log();
 
-    SmartDashboard.putNumber("Pressure", pressure.getValue());
+    SmartDashboard.putNumber("Pressure", (pressure.getValue() - 400) / 1800.0 * 120);
   }
 }

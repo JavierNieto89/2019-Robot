@@ -34,23 +34,6 @@ public class Pigeon {
     return (out > 180) ? out - 360 : out;
   }
 
-  public double getAbsoluteCompassHeading() {
-    return pigeon.getAbsoluteCompassHeading();
-  }
-
-  public double getCompassHeading() {
-    return pigeon.getCompassHeading();
-  }
-
-  public void resetCompass() {
-  }
-
-  public GeneralStatus getGeneralStatus() {
-    GeneralStatus status = new GeneralStatus();
-    pigeon.getGeneralStatus(status);
-    return status;
-  }
-
   /**
    * Gets the current angle of the Pigeon IMU (Robot).
    *
@@ -60,10 +43,32 @@ public class Pigeon {
     return -pigeon.getFusedHeading();
   }
 
+  public double getAbsoluteCompassHeading() {
+    return pigeon.getAbsoluteCompassHeading();
+  }
+
+  public double getCompassHeading() {
+    return pigeon.getCompassHeading();
+  }
+
+  public void resetCompass() {
+
+  }
+
+  public GeneralStatus getGeneralStatus() {
+    GeneralStatus status = new GeneralStatus();
+    pigeon.getGeneralStatus(status);
+    return status;
+  }
+
   public double getTiltAcceleration() {
     double[] rawGyroData = new double[3];
     pigeon.getRawGyro(rawGyroData);
     return rawGyroData[0];
+  }
+
+  public void zero() {
+    pigeon.setFusedHeading(0);
   }
 
   public void reset() {
@@ -72,16 +77,17 @@ public class Pigeon {
 
   public void log() {
     SmartDashboard.putNumber("Angle", getAngle());
+    SmartDashboard.putNumber("Angle Continuous", getAngleContinuous());
     SmartDashboard.putNumber("Compass Angle Absolute", getAbsoluteCompassHeading());
     SmartDashboard.putNumber("Compass Angle", getCompassHeading());
 
     var stat = getGeneralStatus();
-    SmartDashboard.putNumber("Compass Angle", stat.calibrationError);
-    SmartDashboard.putBoolean("Compass Angle", stat.bCalIsBooting);
+    SmartDashboard.putNumber("Compass Cal Error", stat.calibrationError);
+    SmartDashboard.putBoolean("Compass Calibrating", stat.bCalIsBooting);
 
-    if (SmartDashboard.getBoolean("Reset Compass", false)) {
-      resetCompass();
-      SmartDashboard.putBoolean("Reset Compass", false);
+    if (SmartDashboard.getBoolean("Reset Gyro", false)) {
+      zero();
+      SmartDashboard.putBoolean("Reset Gyro", false);
     }
   }
 }

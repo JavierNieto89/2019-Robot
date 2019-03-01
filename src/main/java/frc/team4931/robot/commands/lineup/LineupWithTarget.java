@@ -12,7 +12,7 @@ public class LineupWithTarget extends Command {
   private static final String OFFSET_KEY = "Vision Offset";
   private static final String SIGHT_KEY = "Vision Sight";
   private static final double ANGLE_CORRECTION = 0.5; // AKA Max speed
-  private static final double OFFSET_CORRECTION = 0.35; // AKA speed per foot
+  private static final double OFFSET_CORRECTION = 0.5; // AKA speed per foot
   private static final double DISTANCE_CORRECTION = 0.15; // AKA speed per foot
   private static final double SCALE_SPEED = 0.666; // AKA what to multiply the speed by
   private Drivetrain drivetrain;
