@@ -33,6 +33,8 @@ public class RobotMap {
 
   public final static int PRESSURE = 0;
 
+  public final static int LIMIT_SWITCH = 9;
+
   // forward solenoid channel to extend hatch grabber pistons
   public final static int DISPENSER_EXTEND = 0;
 
