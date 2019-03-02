@@ -10,28 +10,48 @@ import frc.team4931.robot.subsystems.Drivetrain;
 public class LineupWithTarget extends Command {
   private static final String DISTANCE_KEY = "Vision Distance";
   private static final String OFFSET_KEY = "Vision Offset";
+  private static final String SIGHT_KEY = "Vision Sight";
   private static final double ANGLE_CORRECTION = 0.5; // AKA Max speed
-  private static final double OFFSET_CORRECTION = 0.5; // AKA speed per foot
-  private static final double DISTANCE_CORRECTION = 0.3; // AKA speed per foot
-  private static final double SCALE_SPEED = 0.3; // AKA what to multiply the speed by
+  private static final double OFFSET_CORRECTION = 0.35; // AKA speed per foot
+  private static final double DISTANCE_CORRECTION = 0.15; // AKA speed per foot
+  private static final double SCALE_SPEED = 0.666; // AKA what to multiply the speed by
   private Drivetrain drivetrain;
   private Pigeon pigeon;
   private boolean finished;
   private int targetAngle;
   private boolean useCurrentAngle = false;
+  private boolean autoUpdate = false;
 
-  public LineupWithTarget() {
+  public LineupWithTarget(boolean autoUpdate) {
+    this.autoUpdate = autoUpdate;
     drivetrain = Robot.getDrivetrain();
     useCurrentAngle = true;
     requires(drivetrain);
     setInterruptible(true);
   }
 
-  public LineupWithTarget(Angles angle) {
+  public LineupWithTarget(boolean autoUpdate, Angles angle) {
+    this.autoUpdate = autoUpdate;
     drivetrain = Robot.getDrivetrain();
-    targetAngle = angle.getAngle();
+
+    if (angle == Angles.NONE) {
+      useCurrentAngle = true;
+    } else {
+      targetAngle = angle.getAngle();
+      useCurrentAngle = false;
+    }
+
     requires(drivetrain);
     setInterruptible(true);
+  }
+
+  public void updateTarget(Angles angle) {
+    if (angle == Angles.NONE) {
+      useCurrentAngle = true;
+    } else {
+      targetAngle = angle.getAngle();
+      useCurrentAngle = false;
+    }
   }
 
   private double range(double value) {
@@ -64,8 +84,9 @@ public class LineupWithTarget extends Command {
     pigeon = Robot.getPigeon();
     finished = false;
 
-    if (useCurrentAngle)
-      targetAngle = getClosestAngle(pigeon.getAngle());
+    if (autoUpdate) updateTarget(Robot.getAngle());
+
+    if (useCurrentAngle) targetAngle = getClosestAngle(pigeon.getAngle());
   }
 
   @Override
@@ -73,6 +94,7 @@ public class LineupWithTarget extends Command {
     // Distance and Offset are in feet
     double curDistance = SmartDashboard.getNumber(DISTANCE_KEY, -1);
     double curOffset = SmartDashboard.getNumber(OFFSET_KEY, -1);
+    boolean curSight = SmartDashboard.getBoolean(SIGHT_KEY, false);
     double curAngle = pigeon.getAngle();
 
     // Calculate how far from the nearest preset angle in degrees
@@ -80,8 +102,8 @@ public class LineupWithTarget extends Command {
 
     // Calculate correction values
     double angleCorrection = -deltaTarget / 30 * ANGLE_CORRECTION;
-    double offsetCorrection = Math.pow(Math.max(1 - Math.abs(angleCorrection), 0), 2) * curOffset * OFFSET_CORRECTION;
-    double distanceCorrection = Math.pow(Math.max(1 - Math.abs(offsetCorrection), 0), 2) * curDistance * DISTANCE_CORRECTION;
+    double offsetCorrection = (1 - Math.pow(Math.max(range(angleCorrection), 0), 2)) * curOffset * OFFSET_CORRECTION;
+    double distanceCorrection = (1 -Math.pow(Math.max(range(offsetCorrection), 0), 2)) * curDistance * DISTANCE_CORRECTION;
 
     if (Math.abs(deltaTarget) < 3 && Math.abs(curOffset) < 0.15 && Math.abs(curDistance) < 0.15)
       finished = true;
@@ -90,7 +112,10 @@ public class LineupWithTarget extends Command {
     offsetCorrection = range(offsetCorrection) * SCALE_SPEED;
     distanceCorrection = range(distanceCorrection) * SCALE_SPEED;
 
-    drivetrain.driveCartesian(distanceCorrection, offsetCorrection, angleCorrection);
+    if (curSight)
+      drivetrain.driveCartesian(distanceCorrection, offsetCorrection, angleCorrection);
+    else
+      drivetrain.driveCartesian(0, 0, 0);
   }
 
   @Override

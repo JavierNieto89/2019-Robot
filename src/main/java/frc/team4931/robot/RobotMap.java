@@ -31,6 +31,8 @@ public class RobotMap {
 
   public final static int COMPRESSOR = 6;
 
+  public final static int PRESSURE = 0;
+
   // forward solenoid channel to extend hatch grabber pistons
   public final static int DISPENSER_EXTEND = 0;
 
@@ -63,17 +65,19 @@ public class RobotMap {
   public final static int CAMERA = 0;
 
   // The width and height of the camera output feed
-  public final static int CAMERA_WIDTH = 640;
-  public final static int CAMERA_HEIGHT = 480;
+  public final static int CAMERA_WIDTH = 240;
+  public final static int CAMERA_HEIGHT = 180;
 
   // Camera toggle UI visibility
-  public final static int CAMERA_UI_TOGGLE = -1; // FIXME Remap
+  public final static int CAMERA_UI_TOGGLE = 1; // FIXME Remap
 
   public final static int CAMERA_UI_LOCATION_HEIGHT = 100; // The Y value of the eclipse on the screen. The X value is
-                                                           // the camera width / 2.
+  public final static int CAMERA_UI_LOCATION_WIDTH = 85; // the camera width / 2.
+
+
   public final static int CAMERA_UI_WIDTH = 100; // Eclipse height
   public final static int CAMERA_UI_HEIGHT = 50; // Eclipse width
 
   // The width of the outline for the eclipse
-  public final static int CAMERA_UI_LINE_WIDTH = 10;
+  public final static int CAMERA_UI_LINE_WIDTH = 1;
 }
