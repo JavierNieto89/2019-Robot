@@ -80,4 +80,9 @@ public class RobotMap {
 
   // The width of the outline for the eclipse
   public final static int CAMERA_UI_LINE_WIDTH = 1;
+
+  public final static String LINEUP_DISTANCE_CO = "Lineup Coeff DISTANCE";
+  public final static String LINEUP_OFFSET_CO = "Lineup Coeff OFFSET";
+  public final static String LINEUP_ANGLE_CO = "Lineup Coeff ANGLE";
+  public final static String LINEUP_SCALE_SPEED = "Lineup Scale SPEED";
 }

@@ -10,6 +10,7 @@ package frc.team4931.robot;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.command.InstantCommand;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.AnalogInput;
@@ -61,7 +62,6 @@ public class Robot extends TimedRobot {
     drivetrain = new Drivetrain();
 
     pigeon = new Pigeon(drivetrain.getMotor(RobotMap.PIGEON_IMU));
-    pigeon.reset();
 
     hatchGrabber = new HatchGrabber();
 
@@ -82,6 +82,19 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData(drivetrain);
 
     SmartDashboard.putBoolean("Reset Gyro", false);
+    SmartDashboard.putBoolean("Reset Comp", false);
+
+    SmartDashboard.putNumber(RobotMap.LINEUP_ANGLE_CO, 1);
+    SmartDashboard.putNumber(RobotMap.LINEUP_OFFSET_CO, 1);
+    SmartDashboard.putNumber(RobotMap.LINEUP_DISTANCE_CO, 0.2);
+    SmartDashboard.putNumber(RobotMap.LINEUP_SCALE_SPEED, 0.4);
+
+    SmartDashboard.putData(new InstantCommand() {
+      @Override
+      protected void initialize() {
+        Robot.setAutoAngle();
+      }
+    });
   }
 
   /**
@@ -100,6 +113,7 @@ public class Robot extends TimedRobot {
       angle = tempAngle;
 
     Scheduler.getInstance().run();
+
     log();
   }
 

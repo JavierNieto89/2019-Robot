@@ -10,8 +10,6 @@ import frc.team4931.robot.commands.lineup.LineupWithTarget;
 import frc.team4931.robot.commands.utilities.DriveForward;
 
 public class GetHatchAuto extends CommandGroup {
-  private boolean finished = false;
-
   public GetHatchAuto() {
     setInterruptible(true);
 
@@ -19,9 +17,11 @@ public class GetHatchAuto extends CommandGroup {
     addParallel(new ExtendVelcro());
     addParallel(new ResetHatchGrabber());
 
-    addSequential(new DriveForward(0.30, 500));
+    addSequential(new DriveForward(0.30, 1000));
 
     addSequential(new RetractVelcro());
+
+    addSequential(new DriveForward(-0.30, 1000));
   }
 
   @Override

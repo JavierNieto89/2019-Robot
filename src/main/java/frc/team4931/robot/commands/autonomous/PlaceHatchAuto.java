@@ -15,9 +15,11 @@ public class PlaceHatchAuto extends CommandGroup {
     addSequential(new LineupWithTarget(true));
     addParallel(new ExtendVelcro());
 
-    addSequential(new DriveForward(0.30, 200));
+    addSequential(new DriveForward(0.30, 1000));
 
     addSequential(new ShootHatch());
+
+    addSequential(new DriveForward(-0.30, 1000));
   }
 
   @Override
