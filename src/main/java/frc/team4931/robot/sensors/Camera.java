@@ -21,7 +21,12 @@ import frc.team4931.robot.Robot;
 import frc.team4931.robot.RobotMap;
 
 public class Camera {
-  private static final boolean LOAD_EVERY_LOOP = false;
+  private static final boolean LOAD_EVERY_LOOP = true; //FIXME This should probably be set to false to increase performance
+
+  private static int location_x = RobotMap.CAMERA_UI_LOCATION_WIDTH;
+  private static int location_y = RobotMap.CAMERA_UI_LOCATION_HEIGHT;
+  private static int width = RobotMap.CAMERA_UI_WIDTH;
+  private static int height = RobotMap.CAMERA_UI_HEIGHT;
 
   private UsbCamera camera;
   private CvSink source;
@@ -32,6 +37,13 @@ public class Camera {
   private Scalar uiScaler;
 
   private Thread captureThread;
+
+  public static void setUI(int x, int y, int w, int h) {
+    location_x = x;
+    location_y = y;
+    width = w;
+    height = h;
+  }
 
   public Camera() {
     camera = new UsbCamera("Camera", RobotMap.CAMERA);
@@ -69,8 +81,8 @@ public class Camera {
 
         if (LOAD_EVERY_LOOP) {
           uiRotatedRect = new RotatedRect(
-              new Point(RobotMap.CAMERA_UI_LOCATION_WIDTH, RobotMap.CAMERA_UI_LOCATION_HEIGHT),
-              new Size(RobotMap.CAMERA_UI_WIDTH, RobotMap.CAMERA_UI_HEIGHT), 0);
+              new Point(location_x, location_y),
+              new Size(width, height), 0);
           uiScaler = new Scalar(0, 255, 0);
         }
 

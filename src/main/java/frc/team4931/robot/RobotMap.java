@@ -36,16 +36,16 @@ public class RobotMap {
   public final static int LIMIT_SWITCH = 9;
 
   // forward solenoid channel to extend hatch grabber pistons
-  public final static int DISPENSER_EXTEND = 0;
+  public final static int DISPENSER_EXTEND = 1;
 
   // reverse solenoid channel to extend hatch grabber pistons
-  public final static int DISPENSER_RETRACT = 1;
+  public final static int DISPENSER_RETRACT = 0;
 
   // forward solenoid channel to extend top velcro pad
-  public final static int VELCRO_EXTEND = 2;
+  public final static int VELCRO_EXTEND = 3;
 
   // reverse solenoid channel to retract top velcro pad
-  public final static int VELCRO_RETRACT = 3;
+  public final static int VELCRO_RETRACT = 2;
 
   // forward solenoid channel for climber pistons to latch onto 3rd level
   public final static int CLIMBER_PISTON_LATCH = 4;
@@ -54,10 +54,10 @@ public class RobotMap {
   public final static int CLIMBER_PISTON_RELEASE = 5;
 
   // forward solenoid channel for hatch grabber pivot pistons
-  public final static int PIVOT_PISTON_EXTEND = 6;
+  public final static int PIVOT_PISTON_EXTEND = 7;
 
   // reverse solenoid channel for hatch grabber pivot pistons
-  public final static int PIVOT_PISTON_RETRACT = 7;
+  public final static int PIVOT_PISTON_RETRACT = 6;
 
   // motor channels for Climber wench
   public final static int CLIMBER_WENCH_1 = 5;
@@ -82,4 +82,9 @@ public class RobotMap {
 
   // The width of the outline for the eclipse
   public final static int CAMERA_UI_LINE_WIDTH = 1;
+
+  public final static String LINEUP_DISTANCE_CO = "Lineup Coeff DISTANCE";
+  public final static String LINEUP_OFFSET_CO = "Lineup Coeff OFFSET";
+  public final static String LINEUP_ANGLE_CO = "Lineup Coeff ANGLE";
+  public final static String LINEUP_SCALE_SPEED = "Lineup Scale SPEED";
 }

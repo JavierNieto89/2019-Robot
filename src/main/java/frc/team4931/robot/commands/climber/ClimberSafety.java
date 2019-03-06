@@ -6,7 +6,7 @@ import frc.team4931.robot.sensors.Pigeon;
 import frc.team4931.robot.subsystems.Climber;
 
 public class ClimberSafety extends Command {
-  private static final double THRESHOLD = -1.5;
+  private static final double THRESHOLD = -2;
 
   private Climber climber;
   private Pigeon pigeon;
@@ -22,7 +22,7 @@ public class ClimberSafety extends Command {
   protected void execute() {
     double acc = pigeon.getTiltAcceleration();
 
-    if (acc < -THRESHOLD)
+    if (acc < THRESHOLD)
       climber.latch();
   }
 

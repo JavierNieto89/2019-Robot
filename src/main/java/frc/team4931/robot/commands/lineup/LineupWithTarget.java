@@ -6,21 +6,24 @@ import frc.team4931.robot.Robot;
 import frc.team4931.robot.enums.Angles;
 import frc.team4931.robot.sensors.Pigeon;
 import frc.team4931.robot.subsystems.Drivetrain;
+import java.util.ArrayList;
 
 public class LineupWithTarget extends Command {
   private static final String DISTANCE_KEY = "Vision Distance";
   private static final String OFFSET_KEY = "Vision Offset";
   private static final String SIGHT_KEY = "Vision Sight";
-  private static final double ANGLE_CORRECTION = 0.5; // AKA Max speed
-  private static final double OFFSET_CORRECTION = 0.35; // AKA speed per foot
-  private static final double DISTANCE_CORRECTION = 0.15; // AKA speed per foot
-  private static final double SCALE_SPEED = 0.666; // AKA what to multiply the speed by
+  private static double ANGLE_CORRECTION = 1.0; // AKA Max speed
+  private static double OFFSET_CORRECTION = 1.35; // AKA speed per foot
+  private static double DISTANCE_CORRECTION = 0.25; // AKA speed per foot
+  private static double SCALE_SPEED_X = 0.5; // AKA what to multiply the speed by
+  private static double SCALE_SPEED_Y = 0.35; // AKA what to multiply the speed by
+  private static double SCALE_SPEED_Z = 0.35; // AKA what to multiply the speed by
   private Drivetrain drivetrain;
   private Pigeon pigeon;
   private boolean finished;
   private int targetAngle;
   private boolean useCurrentAngle = false;
-  private boolean autoUpdate = false;
+  private boolean autoUpdate = true;
 
   public LineupWithTarget(boolean autoUpdate) {
     this.autoUpdate = autoUpdate;
@@ -59,7 +62,12 @@ public class LineupWithTarget extends Command {
   }
 
   private int getClosestAngle(double angle) {
-    Angles[] values = Angles.values();
+    ArrayList<Angles> values = new ArrayList<>();
+
+    for (var val : Angles.values()) {
+      if (val != Angles.NONE) values.add(val);
+    }
+
     int low = -180;
     int high = 180;
 
@@ -79,6 +87,15 @@ public class LineupWithTarget extends Command {
     return (diff_high < diff_low) ? high : low;
   }
 
+  public static void setCoefficients(double angle, double offset, double distance, double scaleX, double scaleY, double scaleZ) {
+    ANGLE_CORRECTION = angle;
+    OFFSET_CORRECTION = offset;
+    DISTANCE_CORRECTION = distance;
+    SCALE_SPEED_X = scaleX;
+    SCALE_SPEED_Y = scaleY;
+    SCALE_SPEED_Z = scaleZ;
+  }
+
   @Override
   protected void initialize() {
     pigeon = Robot.getPigeon();
@@ -91,26 +108,37 @@ public class LineupWithTarget extends Command {
 
   @Override
   protected void execute() {
+    SmartDashboard.putNumber("Target Angle", targetAngle);
+
     // Distance and Offset are in feet
     double curDistance = SmartDashboard.getNumber(DISTANCE_KEY, -1);
-    double curOffset = SmartDashboard.getNumber(OFFSET_KEY, -1);
+    double curOffset = SmartDashboard.getNumber(OFFSET_KEY, 0);
     boolean curSight = SmartDashboard.getBoolean(SIGHT_KEY, false);
     double curAngle = pigeon.getAngle();
 
     // Calculate how far from the nearest preset angle in degrees
     double deltaTarget = curAngle - targetAngle; //Positive if robot is in a clockwise rotation
 
-    // Calculate correction values
-    double angleCorrection = -deltaTarget / 30 * ANGLE_CORRECTION;
-    double offsetCorrection = (1 - Math.pow(Math.max(range(angleCorrection), 0), 2)) * curOffset * OFFSET_CORRECTION;
-    double distanceCorrection = (1 -Math.pow(Math.max(range(offsetCorrection), 0), 2)) * curDistance * DISTANCE_CORRECTION;
+    if (targetAngle == -180) targetAngle = 180;
+    if (targetAngle == 180) {
+      if (curAngle < 0) {
+        deltaTarget = targetAngle + curAngle;
+      } else {
+        deltaTarget = -targetAngle + curAngle;
+      }
+    }
 
-    if (Math.abs(deltaTarget) < 3 && Math.abs(curOffset) < 0.15 && Math.abs(curDistance) < 0.15)
+    // Calculate correction values
+    double angleCorrection = Math.copySign(Math.pow(Math.abs(deltaTarget / 30), 0.5), -deltaTarget);
+    double offsetCorrection = (1 - Math.pow(range(angleCorrection), 2)) * curOffset;
+    double distanceCorrection = (1 -Math.pow(range(offsetCorrection), 2)) * curDistance;
+
+    if (Math.abs(deltaTarget) < 3 && Math.abs(curOffset) < 0.15 && Math.abs(curDistance) < 2)
       finished = true;
 
-    angleCorrection = range(angleCorrection) * SCALE_SPEED;
-    offsetCorrection = range(offsetCorrection) * SCALE_SPEED;
-    distanceCorrection = range(distanceCorrection) * SCALE_SPEED;
+    angleCorrection = range(angleCorrection * ANGLE_CORRECTION) * SCALE_SPEED_Z;
+    offsetCorrection = range(offsetCorrection * OFFSET_CORRECTION) * SCALE_SPEED_X;
+    distanceCorrection = range(distanceCorrection * DISTANCE_CORRECTION) * SCALE_SPEED_Y;
 
     if (curSight)
       drivetrain.driveCartesian(distanceCorrection, offsetCorrection, angleCorrection);
