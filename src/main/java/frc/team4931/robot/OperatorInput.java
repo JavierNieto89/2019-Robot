@@ -32,11 +32,24 @@ public class OperatorInput {
     joystick1 = new Joystick(RobotMap.JOYSTICK1);
     joystick2 = new Joystick(RobotMap.JOYSTICK2);
 
+    ////////////////////JOYSTICK 1/////////////////////////
     Button shoot = new JoystickButton(joystick1, 1);
     shoot.whenPressed(new ShootHatch());
 
     Button changeVelcro = new JoystickButton(joystick1, 2);
     changeVelcro.whenPressed(new ChangeVelcroState());
+
+    Button pivotDown = new JoystickButton(joystick1, 3);
+    pivotDown.whenPressed(new PivotDown());
+
+    Button placeHatch = new JoystickButton(joystick1, 4);
+    placeHatch.whenPressed(new PlaceHatchAuto());
+
+    Button pivotReset = new JoystickButton(joystick1, 5);
+    pivotReset.whenPressed(new PivotUp());
+
+    Button getHatch = new JoystickButton(joystick1, 6);
+    getHatch.whenPressed(new GetHatchAuto());
 
     Button bamBam = new JoystickButton(joystick1, 7);
     bamBam.whenPressed(new ExtendHatchGrabber());
@@ -44,34 +57,23 @@ public class OperatorInput {
     Button retract = new JoystickButton(joystick1, 8);
     retract.whenPressed(new ResetHatchGrabber());
 
-    Button pivotDown = new JoystickButton(joystick1, 3);
-    pivotDown.whenPressed(new PivotDown());
+    Button setAutoAngle = new JoystickButton(joystick1, 12);
+    setAutoAngle.whenPressed(new SetAutoAngle());
 
-    Button pivotReset = new JoystickButton(joystick1, 5);
-    pivotReset.whenPressed(new PivotUp());
+    ///////////////////JOYSTICK 2/////////////////////////
+    Button windWench = new JoystickButton(joystick2, 3);
+    windWench.whenPressed(new RetractClimberArm());
+    windWench.whenReleased(new ArmStop());
+
+    Button climberLatch = new JoystickButton(joystick2, 6);
+    climberLatch.whenPressed(new Latch());
 
     Button unwindWench = new JoystickButton(joystick2, 5);
     unwindWench.whenPressed(new ExtendClimberArm());
     unwindWench.whenReleased(new ArmStop());
 
-    Button windWench = new JoystickButton(joystick2, 3);
-    windWench.whenPressed(new RetractClimberArm());
-    windWench.whenReleased(new ArmStop());
-
-    Button climberLatch = new JoystickButton(joystick2, 4);
-    climberLatch.whenPressed(new Latch());
-
-    Button climberRelease = new JoystickButton(joystick2, 6);
+    Button climberRelease = new JoystickButton(joystick2, 4);
     climberRelease.whenPressed(new Release());
-
-    Button getHatch = new JoystickButton(joystick1, 6);
-    getHatch.whenPressed(new GetHatchAuto());
-
-    Button placeHatch = new JoystickButton(joystick1, 4);
-    placeHatch.whenPressed(new PlaceHatchAuto());
-
-    Button setAutoAngle = new JoystickButton(joystick2, 2);
-    setAutoAngle.whenReleased(new SetAutoAngle());
   }
 
   public Joystick getJoystick() {
