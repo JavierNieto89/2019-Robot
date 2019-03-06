@@ -18,6 +18,10 @@ import frc.team4931.robot.commands.lineup.SetAutoAngle;
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
+ *
+ * ^ Rhetorical way of saying when an instance of this class is created it'll create Joystick objects.
+ * Those objects then have listeners setup in the main WPI Tread that will submit a command when the bound
+ * physical action is taken. Therefore realistic speaking only one OperatorInput object can be used.
  */
 public class OperatorInput {
 
@@ -40,30 +44,30 @@ public class OperatorInput {
     Button retract = new JoystickButton(joystick1, 8);
     retract.whenPressed(new ResetHatchGrabber());
 
-    Button pivotDown = new JoystickButton(joystick1, 9);
+    Button pivotDown = new JoystickButton(joystick1, 3);
     pivotDown.whenPressed(new PivotDown());
 
-    Button pivotReset = new JoystickButton(joystick1, 10);
+    Button pivotReset = new JoystickButton(joystick1, 5);
     pivotReset.whenPressed(new PivotUp());
 
-    Button unwindWench = new JoystickButton(joystick1, 5);
+    Button unwindWench = new JoystickButton(joystick2, 5);
     unwindWench.whenPressed(new ExtendClimberArm());
     unwindWench.whenReleased(new ArmStop());
 
-    Button windWench = new JoystickButton(joystick1, 3);
+    Button windWench = new JoystickButton(joystick2, 3);
     windWench.whenPressed(new RetractClimberArm());
     windWench.whenReleased(new ArmStop());
 
-    Button climberLatch = new JoystickButton(joystick1, 4);
+    Button climberLatch = new JoystickButton(joystick2, 4);
     climberLatch.whenPressed(new Latch());
 
-    Button climberRelease = new JoystickButton(joystick1, 6);
+    Button climberRelease = new JoystickButton(joystick2, 6);
     climberRelease.whenPressed(new Release());
 
-    Button getHatch = new JoystickButton(joystick1, 11);
+    Button getHatch = new JoystickButton(joystick1, 6);
     getHatch.whenPressed(new GetHatchAuto());
 
-    Button placeHatch = new JoystickButton(joystick1, 12);
+    Button placeHatch = new JoystickButton(joystick1, 4);
     placeHatch.whenPressed(new PlaceHatchAuto());
 
     Button setAutoAngle = new JoystickButton(joystick2, 2);
