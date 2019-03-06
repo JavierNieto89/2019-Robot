@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.Compressor;
-import frc.team4931.robot.commands.climber.ClimberSafety;
+import frc.team4931.robot.commands.climber.*;
 import frc.team4931.robot.commands.lineup.LineupWithTarget;
 import frc.team4931.robot.enums.Angles;
 import frc.team4931.robot.sensors.Camera;
@@ -53,6 +53,8 @@ public class Robot extends TimedRobot {
 
   private static ClimberSafety climberSafety;
 
+  private static LimitSwitchSafety limitSwitchSafety;
+
   /**
    * This function is run when the robot is first started up and should be used
    * for any initialization code.
@@ -78,6 +80,8 @@ public class Robot extends TimedRobot {
     pressure = new AnalogInput(RobotMap.PRESSURE);
 
     climberSafety = new ClimberSafety();
+
+    limitSwitchSafety = new LimitSwitchSafety();
 
     SmartDashboard.putData(drivetrain);
 
@@ -115,6 +119,7 @@ public class Robot extends TimedRobot {
     Scheduler.getInstance().run();
 
     log();
+    startLimitSwitchSafety();
   }
 
   private Angles calculateAngle() {
@@ -185,6 +190,12 @@ public class Robot extends TimedRobot {
   public static void startClimberSafety() {
     if (climberSafety != null && !climberSafety.isRunning())
       climberSafety.start();
+  }
+
+  private static void startLimitSwitchSafety() {
+    if(limitSwitchSafety != null && !limitSwitchSafety.isRunning()) {
+      limitSwitchSafety.start();
+    }
   }
 
   private void log() {

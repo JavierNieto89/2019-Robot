@@ -1,6 +1,8 @@
 package frc.team4931.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
@@ -13,10 +15,12 @@ public class Climber extends Subsystem {
   private WPI_TalonSRX wenchMotor1;
   private WPI_TalonSRX wenchMotor2;
   private SpeedControllerGroup wench;
+  private DigitalInput limitSwitch;
 
   public Climber() {
     wenchMotor1 = new WPI_TalonSRX(RobotMap.CLIMBER_WENCH_1);
     wenchMotor2 = new WPI_TalonSRX(RobotMap.CLIMBER_WENCH_2);
+    limitSwitch = new DigitalInput(RobotMap.LIMIT_SWITCH);
 
     //always set wenchMotor2 to the negative speed of wenchMotor1
     wenchMotor2.setInverted(true);
@@ -61,5 +65,14 @@ public class Climber extends Subsystem {
     SmartDashboard.putNumber("Wench Motor 1 Speed", wenchMotor1.get());
     SmartDashboard.putNumber("Wench Motor 2 Speed", -(wenchMotor2.get()));
     SmartDashboard.putNumber("Wench Motor Group Speed", wench.get());
+    SmartDashboard.putBoolean("Limit Switch is triggered", limitSwitch.get());
+  }
+
+  public boolean getLimitSwitchValue() {
+    return limitSwitch.get();
+  }
+
+  public SpeedControllerGroup getWench() {
+    return wench;
   }
 }
