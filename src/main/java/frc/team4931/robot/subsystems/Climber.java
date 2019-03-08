@@ -69,7 +69,7 @@ public class Climber extends Subsystem {
   }
 
   public boolean getLimitSwitchValue() {
-    return limitSwitch.get();
+    return !(limitSwitch.get());
   }
 
   public SpeedControllerGroup getWench() {
