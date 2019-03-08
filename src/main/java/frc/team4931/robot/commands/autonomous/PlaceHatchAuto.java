@@ -34,5 +34,6 @@ public class PlaceHatchAuto extends CommandGroup {
   @Override
   protected void interrupted() {
     Robot.getHatchGrabber().retractVelcro();
+    Robot.getHatchGrabber().resetHatchGrabber();
   }
 }

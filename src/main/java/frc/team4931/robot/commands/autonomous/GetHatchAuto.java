@@ -2,6 +2,7 @@ package frc.team4931.robot.commands.autonomous;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.WaitCommand;
 import frc.team4931.robot.Robot;
 import frc.team4931.robot.commands.hatchgrabber.ExtendVelcro;
 import frc.team4931.robot.commands.hatchgrabber.ResetHatchGrabber;
@@ -14,10 +15,11 @@ public class GetHatchAuto extends CommandGroup {
     setInterruptible(true);
 
     addSequential(new LineupWithTarget(true));
-    addParallel(new ExtendVelcro());
     addParallel(new ResetHatchGrabber());
 
     addSequential(new DriveForward(0.30, 1000));
+
+    addParallel(new ExtendVelcro());
 
     addSequential(new RetractVelcro());
 
