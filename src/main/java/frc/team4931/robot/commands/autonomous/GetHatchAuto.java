@@ -15,11 +15,12 @@ public class GetHatchAuto extends CommandGroup {
     setInterruptible(true);
 
     addSequential(new LineupWithTarget(true));
-    addParallel(new ResetHatchGrabber());
+    
+    addSequential(new ResetHatchGrabber());
+
+    addSequential(new ExtendVelcro());
 
     addSequential(new DriveForward(0.30, 1000));
-
-    addParallel(new ExtendVelcro());
 
     addSequential(new RetractVelcro());
 
