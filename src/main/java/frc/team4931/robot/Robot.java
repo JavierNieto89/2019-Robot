@@ -112,7 +112,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    SmartDashboard.putString("Current Auto Angle", calculateAngle().toString());
+    angle = calculateAngle();
+    SmartDashboard.putString("Current Auto Angle", angle.toString());
     Scheduler.getInstance().run();
 
     log();
