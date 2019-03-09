@@ -133,7 +133,7 @@ public class LineupWithTarget extends Command {
     double offsetCorrection = (1 - Math.pow(range(angleCorrection), 2)) * curOffset;
     double distanceCorrection = (1 -Math.pow(range(offsetCorrection), 2)) * curDistance;
 
-    if (Math.abs(deltaTarget) < 3 && Math.abs(curOffset) < 0.15 && Math.abs(curDistance) < 2)
+    if (Math.abs(deltaTarget) < 3 && Math.abs(curOffset) < 0.15 && Math.abs(curDistance) < 2 && curDistance != -1)
       finished = true;
 
     angleCorrection = range(angleCorrection * ANGLE_CORRECTION) * SCALE_SPEED_Z;
@@ -143,7 +143,7 @@ public class LineupWithTarget extends Command {
     if (curSight)
       drivetrain.driveCartesian(distanceCorrection, offsetCorrection, angleCorrection);
     else
-      drivetrain.driveCartesian(0, 0, 0);
+      drivetrain.driveCartesian(0.15, 0, 0);
   }
 
   @Override
