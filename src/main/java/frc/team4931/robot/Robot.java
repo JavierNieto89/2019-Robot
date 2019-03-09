@@ -120,7 +120,7 @@ public class Robot extends TimedRobot {
     startLimitSwitchSafety();
   }
 
-  public Angles calculateAngle() {
+  private Angles calculateAngle() {
     int x = (int)(operatorInput.getJoystick2().getX() * 100);
     int y = (int)(operatorInput.getJoystick2().getY() * 100);
 
