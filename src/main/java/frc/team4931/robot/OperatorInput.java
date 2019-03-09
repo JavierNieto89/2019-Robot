@@ -14,6 +14,7 @@ import frc.team4931.robot.commands.climber.*;
 import frc.team4931.robot.commands.autonomous.*;
 import edu.wpi.first.wpilibj.command.*;
 import frc.team4931.robot.commands.lineup.SetAutoAngle;
+import frc.team4931.robot.enums.Angles;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -57,9 +58,6 @@ public class OperatorInput {
     Button retract = new JoystickButton(joystick1, 8);
     retract.whenPressed(new ResetHatchGrabber());
 
-    Button setAutoAngle = new JoystickButton(joystick1, 12);
-    setAutoAngle.whenPressed(new SetAutoAngle());
-
     ///////////////////JOYSTICK 2/////////////////////////
     Button windWench = new JoystickButton(joystick2, 3);
     windWench.whenPressed(new RetractClimberArm());
@@ -74,6 +72,9 @@ public class OperatorInput {
 
     Button climberRelease = new JoystickButton(joystick2, 4);
     climberRelease.whenPressed(new Release());
+
+    Button setAutoAngle = new JoystickButton(joystick2, 12);
+    setAutoAngle.whenPressed(new SetAutoAngle());
   }
 
   public Joystick getJoystick() {

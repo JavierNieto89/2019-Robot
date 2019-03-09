@@ -112,38 +112,51 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    Angles tempAngle = calculateAngle();
-    if (tempAngle != Angles.NONE)
-      angle = tempAngle;
-
+    SmartDashboard.putString("Current Auto Angle", calculateAngle().toString());
     Scheduler.getInstance().run();
 
     log();
     startLimitSwitchSafety();
   }
 
-  private Angles calculateAngle() {
-    int pov = operatorInput.getJoystick().getPOV();
+  public Angles calculateAngle() {
+    int x = (int)(operatorInput.getJoystick2().getX() * 100);
+    int y = (int)(operatorInput.getJoystick2().getY() * 100);
 
-    switch (pov) {
+    x = (Math.abs(x) >= 50) ? ((x > 0) ? 1 : -1) : 0;
+
+    y = (Math.abs(y) >= 50) ? ((y > 0) ? 1 : -1) : 0;
+
+    switch (x) {
+      case 1:
+        switch(y) {
+          case 0:
+            return Angles.RIGHT;
+          case 1:
+            return Angles.BACKWARD_RIGHT;
+          case -1:
+            return Angles.FORWARD_RIGHT;
+        }
       case 0:
-        return Angles.FORWARD;
-      case 45:
-        return Angles.FORWARD_RIGHT;
-      case 90:
-        return Angles.RIGHT;
-      case 135:
-        return Angles.BACKWARD_RIGHT;
-      case 180:
-        return Angles.BACKWARD;
-      case 225:
-        return Angles.BACKWARD_LEFT;
-      case 270:
-        return Angles.LEFT;
-      case 315:
-        return Angles.FORWARD_LEFT;
+      switch(y) {
+        case 0:
+          return Angles.NONE;
+        case 1:
+          return Angles.BACKWARD;
+        case -1:
+          return Angles.FORWARD;
+      }
+      case -1:
+      switch(y) {
+        case 0:
+          return Angles.LEFT;
+        case 1:
+          return Angles.BACKWARD_LEFT;
+        case -1:
+          return Angles.FORWARD_LEFT;
+      }
     }
-    return Angles.NONE;
+    return Angles.NONE; 
   }
 
   @Override
