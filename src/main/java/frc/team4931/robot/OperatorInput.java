@@ -73,6 +73,9 @@ public class OperatorInput {
     Button climberRelease = new JoystickButton(joystick2, 4);
     climberRelease.whenPressed(new Release());
 
+    Button invertClimber = new JoystickButton(joystick2, 7);
+    invertClimber.whenPressed(new InvertClimberArm());
+
     Button setAutoAngle = new JoystickButton(joystick2, 12);
     setAutoAngle.whenPressed(new SetAutoAngle());
   }

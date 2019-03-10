@@ -16,6 +16,7 @@ public class Climber extends Subsystem {
   private WPI_TalonSRX wenchMotor2;
   private SpeedControllerGroup wench;
   private DigitalInput limitSwitch;
+  private boolean isInverted = false;
 
   public Climber() {
     wenchMotor1 = new WPI_TalonSRX(RobotMap.CLIMBER_WENCH_1);
@@ -26,6 +27,8 @@ public class Climber extends Subsystem {
     wenchMotor2.setInverted(true);
 
     wench = new SpeedControllerGroup(wenchMotor1, wenchMotor2);
+    wench.setInverted(isInverted);
+    SmartDashboard.putBoolean("Climber is Inverted", isInverted);
   }
 
   private DoubleSolenoid pneumatics = new DoubleSolenoid(
@@ -47,6 +50,12 @@ public class Climber extends Subsystem {
 
   public void armStop() {
     wench.stopMotor();
+  }
+
+  public void InvertClimberArm() {
+    isInverted = !isInverted;
+    wench.setInverted(isInverted);
+    SmartDashboard.putBoolean("Climber is Inverted", isInverted);
   }
 
   public void latch() {

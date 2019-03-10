@@ -143,7 +143,7 @@ public class LineupWithTarget extends Command {
     if (curSight)
       drivetrain.driveCartesian(distanceCorrection, offsetCorrection, angleCorrection);
     else
-      drivetrain.driveCartesian(0.15, 0, 0);
+      drivetrain.driveCartesian(0.15, 0, angleCorrection);
   }
 
   @Override
